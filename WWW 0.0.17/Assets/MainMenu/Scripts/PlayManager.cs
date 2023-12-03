@@ -37,31 +37,31 @@ public class PlayManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Проверяем, есть ли еще ссылка на canvasMenu перед обращением к ней
-        if (canvasMenu != null && !canvasMenu.activeSelf && isPaused)
+        /*if (canvasMenu != null && !canvasMenu.activeSelf && isPaused)
         {
             ResumeGame();
-        }
+        }*/
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (canvasMenu.activeSelf)
+            /*if (canvasMenu.activeSelf)
             {
                 ResumeGame();
             }
             else
             {
                 PauseGame();
-            }
+            }*/
         }
 
         // Проверяем, если CanvasMenu скрыт, а игра все еще находится на паузе, снимаем паузу
-        if (!canvasMenu.activeSelf && isPaused)
+        /*if (!canvasMenu.activeSelf && isPaused)
         {
             ResumeGame();
-        }
+        }*/
     }
 
     void PauseGame()

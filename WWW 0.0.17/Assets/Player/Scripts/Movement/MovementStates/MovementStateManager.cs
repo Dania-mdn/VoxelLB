@@ -40,6 +40,7 @@ public class MovementStateManager : MonoBehaviour
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         SwitchState(Idle);
+
     }
 
     void Update()

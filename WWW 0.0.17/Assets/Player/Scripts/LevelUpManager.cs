@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelUpManager : MonoBehaviour
 {
     public MovementStateManager movementStateManager;
 
-    public Text levelText;
-
-    void Start()
-    {
-        // Получите компонент Text из текущего объекта
-        levelText = GetComponentInChildren<Text>();
-
-    }
+    public TextMeshProUGUI levelText;
 
     void Update()
     {

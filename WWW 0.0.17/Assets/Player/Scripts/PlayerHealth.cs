@@ -13,6 +13,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         currentHealth = maxHealth; // Установка начального здоровья
         UpdateHealthBar();
     }
