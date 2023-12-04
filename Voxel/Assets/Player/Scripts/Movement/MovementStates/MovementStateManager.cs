@@ -48,8 +48,8 @@ public class MovementStateManager : MonoBehaviour
         GetDirectionAndMove();
         Gravity();
 
-        anim.SetFloat("hzInput", hzInput);
-        anim.SetFloat("vInput", vInput);
+        //anim.SetFloat("hzInput", hzInput);
+        //anim.SetFloat("vInput", vInput);
 
         currentState.UpdateState(this);
     }

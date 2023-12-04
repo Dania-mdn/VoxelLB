@@ -7,13 +7,46 @@ using System.Threading;
 using System;
 using System.Threading.Tasks;
 
-	public class Cut : MonoBehaviour
-	{
-		public Material CapMaterial;
+public class Cut : MonoBehaviour
+{
+	public Material CapMaterial;
 
-		private CancellationTokenSource _previousTaskCancel;
+	private CancellationTokenSource _previousTaskCancel;
 
-		public void Cat()
+	private int coldawn = 1;
+	private float TimeReady;
+
+	public Animator animator;
+
+    private void Update()
+    {
+		if (Input.GetKeyDown(KeyCode.Mouse0))
+		{
+			animator.Play("left");
+		}
+		else if (Input.GetKeyDown(KeyCode.Mouse1))
+		{
+			animator.Play("right");
+		}
+
+		if (TimeReady > 0)
+        {
+			TimeReady = TimeReady - Time.deltaTime;
+		}
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+		Debug.Log(other.gameObject.name);
+        if (other.gameObject)
+        {
+			if(TimeReady <= 0)
+			{
+				Cat();
+				TimeReady = coldawn;
+			}
+		}
+    }
+    public void Cat()
 		{
 			if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
 			{
