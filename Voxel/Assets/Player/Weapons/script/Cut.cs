@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 public class Cut : MonoBehaviour
 {
@@ -13,46 +14,24 @@ public class Cut : MonoBehaviour
 
 	private CancellationTokenSource _previousTaskCancel;
 
-	private int coldawn = 1;
-	private float TimeReady;
+	public bool cut = false;
 
-	public Animator animator;
 
-    private void Update()
+	private void OnTriggerEnter(Collider other)
     {
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{
-			animator.Play("left");
-		}
-		else if (Input.GetKeyDown(KeyCode.Mouse1))
-		{
-			animator.Play("right");
-		}
-
-		if (TimeReady > 0)
+		if (cut)
         {
-			TimeReady = TimeReady - Time.deltaTime;
-		}
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-		Debug.Log(other.gameObject.name);
-        if (other.gameObject)
-        {
-			if(TimeReady <= 0)
-			{
-				Cat();
-				TimeReady = coldawn;
-			}
-		}
+            Cat();
+        }
     }
     public void Cat()
-		{
+	{
 			if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
 			{
 				var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
 
 				// this will hold up everything
+				//if(hit.collider.gameObject.tag == "Cut")
 				Cutt(hit.collider.gameObject, timeLimit);
 
 				// this won't hold up everything
@@ -62,7 +41,7 @@ public class Cut : MonoBehaviour
 			{
 				Debug.LogError("Missed");
 			}
-		}
+	}
 
 		// this will hold up the UI thread
 		private void Cutt(GameObject target, CancellationToken cancellationToken = default)
@@ -220,16 +199,16 @@ public class Cut : MonoBehaviour
 				}, capSubmeshIndex, cancellationToken);
 		}
 
-		void OnDrawGizmosSelected()
-		{
-			Gizmos.color = Color.green;
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.green;
 
-			var top = transform.position + transform.up * 0.5f;
-			var bottom = transform.position - transform.up * 0.5f;
+		var top = transform.position + transform.up * 0.5f;
+		var bottom = transform.position - transform.up * 0.5f;
 
-			Gizmos.DrawRay(top, transform.forward * 5.0f);
-			Gizmos.DrawRay(transform.position, transform.forward * 5.0f);
-			Gizmos.DrawRay(bottom, transform.forward * 5.0f);
-			Gizmos.DrawLine(top, bottom);
-		}
+		Gizmos.DrawRay(top, transform.forward * 5.0f);
+		Gizmos.DrawRay(transform.position, transform.forward * 5.0f);
+		Gizmos.DrawRay(bottom, transform.forward * 5.0f);
+		Gizmos.DrawLine(top, bottom);
 	}
+}
