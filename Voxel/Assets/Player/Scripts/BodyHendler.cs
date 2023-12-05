@@ -28,7 +28,7 @@ public class BodyHendler : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.D) == true)
         {
             cut.cut = true;
-            //animator.Play("right");
+            animator.Play("right");
         }
     }
     public void SetCutfalse()
