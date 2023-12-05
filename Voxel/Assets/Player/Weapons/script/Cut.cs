@@ -16,31 +16,53 @@ public class Cut : MonoBehaviour
 
 	public bool cut = false;
 
+	private float time;
+
+	private int coldawn = 1;
+
+	//private void OnCollisionEnter(Collision other)
+	//   {
+	//	if (cut)
+	//       {
+	//           Cat();
+	//       }
+	//   }
+	private void Update()
+    {
+		if(time > 0)
+        {
+			time = time - Time.deltaTime;
+        }
+    }
 
 	private void OnTriggerEnter(Collider other)
     {
-		if (cut)
+        if (cut)
         {
             Cat();
         }
     }
     public void Cat()
 	{
-			if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
-			{
-				var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
+		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
+		{
+			var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
 
-				// this will hold up everything
-				//if(hit.collider.gameObject.tag == "Cut")
-				Cutt(hit.collider.gameObject, timeLimit);
+            if (hit.collider.gameObject.tag != "dontCut")
+            {
+				if (hit.collider.gameObject.tag != "Untagged")
+				{
+					Cutt(hit.collider.gameObject, timeLimit);
+				}
+                else 
+				{
+					if (time <= 0)
+						Cutt(hit.collider.gameObject, timeLimit);
+				}
 
-				// this won't hold up everything
-				//StartCoroutine(CutCoroutine(hit.collider.gameObject, timeLimit));
+				time = coldawn;
 			}
-			else
-			{
-				Debug.LogError("Missed");
-			}
+		}
 	}
 
 		// this will hold up the UI thread

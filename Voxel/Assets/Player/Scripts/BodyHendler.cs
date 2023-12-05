@@ -17,25 +17,26 @@ public class BodyHendler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
         {
-            Debug.Log("attack");
             cut.cut = true;
             animator.Play("attack");
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == true)
         {
-            Debug.Log("left");
             cut.cut = true;
-            //animator.Play("left");
+            animator.Play("left");
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.D) == true)
         {
-            Debug.Log("right");
             cut.cut = true;
             //animator.Play("right");
         }
     }
-    public void SetCut()
+    public void SetCutfalse()
     {
         cut.cut = false;
+    }
+    public void SetCuttrue()
+    {
+        cut.cut = true;
     }
 }
