@@ -5,6 +5,8 @@ using UnityEngine;
 public class MovementStateManager : MonoBehaviour
 {
     #region Movement
+    public RunningAnimation runningAnimation;
+    public Transform Ass;
     public float currentMoveSpeed;
     public float walkSpeed =4, walkBackSpeed =2;
     public float runSpeed =8, runBackSpeed =5;
@@ -37,7 +39,6 @@ public class MovementStateManager : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         SwitchState(Idle);
 
@@ -68,6 +69,62 @@ public class MovementStateManager : MonoBehaviour
         dir = transform.forward * vInput + transform.right * hzInput;
 
         controller.Move(dir.normalized * currentMoveSpeed * Time.deltaTime);
+
+        //разворот таза в зависимости от направлния
+        if(vInput == 0)
+        {
+            if (hzInput < 0)
+            {
+                Ass.rotation = Quaternion.Euler(0, -65, 0) * transform.rotation;
+                runningAnimation.direction = 0;
+            }
+            else if (hzInput > 0)
+            {
+                Ass.rotation = Quaternion.Euler(0, 65, 0) * transform.rotation;
+                runningAnimation.direction = 4;
+            }
+            else
+            {
+                Ass.rotation = Quaternion.Euler(0, 0, 0) * transform.rotation;
+                runningAnimation.direction = 8;
+            }
+        }
+        else if(vInput > 0)
+        {
+            if (hzInput < 0)
+            {
+                Ass.rotation = Quaternion.Euler(0, -40, 0) * transform.rotation;
+                runningAnimation.direction = 1;
+            }
+            else if (hzInput > 0)
+            {
+                Ass.rotation = Quaternion.Euler(0, 40, 0) * transform.rotation;
+                runningAnimation.direction = 3;
+            }
+            else
+            {
+                Ass.rotation = Quaternion.Euler(0, 0, 0) * transform.rotation;
+                runningAnimation.direction = 2;
+            }
+        }
+        else if(vInput < 0)
+        {
+            if (hzInput < 0)
+            {
+                Ass.rotation = Quaternion.Euler(0, 40, 0) * transform.rotation;
+                runningAnimation.direction = 7;
+            }
+            else if (hzInput > 0)
+            {
+                Ass.rotation = Quaternion.Euler(0, -40, 0) * transform.rotation;
+                runningAnimation.direction = 5;
+            }
+            else
+            {
+                Ass.rotation = Quaternion.Euler(0, 0, 0) * transform.rotation;
+                runningAnimation.direction = 6;
+            }
+        }
     }
 
     bool IsGrounded()

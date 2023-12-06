@@ -7,6 +7,7 @@ using System.Threading;
 using System;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using Unity.Burst.CompilerServices;
 
 public class Cut : MonoBehaviour
 {
@@ -19,14 +20,6 @@ public class Cut : MonoBehaviour
 	private float time;
 
 	private int coldawn = 1;
-
-	//private void OnCollisionEnter(Collision other)
-	//   {
-	//	if (cut)
-	//       {
-	//           Cat();
-	//       }
-	//   }
 	private void Update()
     {
 		if(time > 0)
@@ -35,35 +28,27 @@ public class Cut : MonoBehaviour
         }
     }
 
-	private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (cut)
+		if (!cut) return;
+		
+        var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
+
+        if (collision.collider.gameObject.tag != "dontCut")
         {
-            Cat();
+            if (collision.collider.gameObject.tag != "Untagged")
+            {
+                Cutt(collision.collider.gameObject, timeLimit);
+            }
+            else
+            {
+                if (time <= 0)
+                    Cutt(collision.collider.gameObject, timeLimit);
+            }
+
+            time = coldawn;
         }
     }
-    public void Cat()
-	{
-		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
-		{
-			var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
-
-            if (hit.collider.gameObject.tag != "dontCut")
-            {
-				if (hit.collider.gameObject.tag != "Untagged")
-				{
-					Cutt(hit.collider.gameObject, timeLimit);
-				}
-                else 
-				{
-					if (time <= 0)
-						Cutt(hit.collider.gameObject, timeLimit);
-				}
-
-				time = coldawn;
-			}
-		}
-	}
 
 		// this will hold up the UI thread
 		private void Cutt(GameObject target, CancellationToken cancellationToken = default)
