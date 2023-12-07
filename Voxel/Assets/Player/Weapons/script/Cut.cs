@@ -20,6 +20,8 @@ public class Cut : MonoBehaviour
 	private float time;
 
 	private int coldawn = 1;
+
+	public ParticleSystem ParticleSystem;
 	private void Update()
     {
 		if(time > 0)
@@ -45,6 +47,7 @@ public class Cut : MonoBehaviour
                 if (time <= 0)
                     Cutt(collision.collider.gameObject, timeLimit);
             }
+            ParticleSystem.Play();
 
             time = coldawn;
         }

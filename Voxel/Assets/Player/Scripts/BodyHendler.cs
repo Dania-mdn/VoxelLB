@@ -18,6 +18,10 @@ public class BodyHendler : MonoBehaviour
 
     private int NumberWeapon = 1;
 
+    public GameObject Arrow;
+    public Transform SpawnArrow;
+    private GameObject SpawningArrow;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -125,5 +129,15 @@ public class BodyHendler : MonoBehaviour
             BowHand.SetActive(false);
             BowrLeftHand.SetActive(true);
         }
+    }
+    
+    public void SpuwnArrow()
+    {
+        SpawningArrow = Instantiate(Arrow, SpawnArrow.position, SpawnArrow.rotation, BowrLeftHand.transform);
+    }
+    public void FireArrow()
+    {
+        SpawningArrow.GetComponent<Arrow>().FireArrow();
+        SpawningArrow = null;
     }
 }
