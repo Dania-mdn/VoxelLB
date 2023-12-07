@@ -16,6 +16,8 @@ public class BodyHendler : MonoBehaviour
     public GameObject BowrLeftHand;
     private bool SwordReady = true;
 
+    private int NumberWeapon = 1;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -28,12 +30,13 @@ public class BodyHendler : MonoBehaviour
             Swordback.SetActive(false);
             Bowback.SetActive(true);
         }
-        PlayerPrefs.SetInt("NumberWeapon", 1);
     }
 
     private void Update()
     {
-        if (PlayerPrefs.GetInt("NumberWeapon") == 1)
+        if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "idle" && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "HoldBow") return;
+
+        if (NumberWeapon == 1)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
             {
@@ -51,13 +54,14 @@ public class BodyHendler : MonoBehaviour
                 animator.Play("right");
             }
         }
-        else if(PlayerPrefs.GetInt("NumberWeapon") == 2)
+        else if(NumberWeapon == 2)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 animator.Play("BowAttack");
+                animator.SetBool("BowFire", true);
             }
-            else if (Input.GetKeyUp(KeyCode.Mouse0))
+            else if (Input.GetKey(KeyCode.Mouse0) == false)
             {
                 animator.SetBool("BowFire", false);
             }
@@ -65,7 +69,7 @@ public class BodyHendler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if(PlayerPrefs.GetInt("NumberWeapon") == 2)
+            if(NumberWeapon == 2)
             {
                 if (BowrLeftHand.activeSelf == true)
                 {
@@ -73,15 +77,15 @@ public class BodyHendler : MonoBehaviour
                     BowrLeftHand.SetActive(false);
                 }
                 animator.Play("chanche");
-                PlayerPrefs.SetInt("NumberWeapon", 1);
+                NumberWeapon = 1;
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (PlayerPrefs.GetInt("NumberWeapon") == 1)
+            if (NumberWeapon == 1)
             {
                 animator.Play("chanche");
-                PlayerPrefs.SetInt("NumberWeapon", 2);
+                NumberWeapon = 2;
             }
         }
     }
@@ -114,10 +118,6 @@ public class BodyHendler : MonoBehaviour
         SwordReady = !SwordReady;
     }
 
-    public void SetBowReadyFire()
-    {
-        animator.SetBool("BowFire", true);
-    }
     public void SetchancheHendBow()
     {
         if(BowHand.activeSelf == true)
