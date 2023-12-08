@@ -3,6 +3,7 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     private Rigidbody rb;
+    private BoxCollider bc;
     public GameObject trailRenderer;
     public float speed;
 
@@ -13,6 +14,7 @@ public class Arrow : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        bc = GetComponent<BoxCollider>();
     }
     public void FireArrow()
     {
@@ -33,7 +35,8 @@ public class Arrow : MonoBehaviour
     {
         gameObject.transform.parent = other.transform;
         rb.isKinematic = true;
-        transform.position = transform.position - transform.right * 0.5f;
+        transform.position = transform.position - transform.right * 1;
+        bc.enabled = false;
 
         Invoke("setTrailRenderer", 2);
     }

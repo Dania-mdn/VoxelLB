@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementStateManager : MonoBehaviour
 {
     #region Movement
+    public float jumpHeight = 1.0f;
     public RunningAnimation runningAnimation;
     public Transform Ass;
     public float currentMoveSpeed;
@@ -47,10 +48,18 @@ public class MovementStateManager : MonoBehaviour
     void Update()
     {
         GetDirectionAndMove();
-        Gravity();
 
-        //anim.SetFloat("hzInput", hzInput);
-        //anim.SetFloat("vInput", vInput);
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f; // —брасываем вертикальную скорость, когда персонаж находитс€ на земле
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
+        {
+            Jump();
+        }
+        // ѕримен€ем гравитацию
+        velocity.y += gravity * Time.deltaTime;
 
         currentState.UpdateState(this);
     }
@@ -69,14 +78,17 @@ public class MovementStateManager : MonoBehaviour
         dir = transform.forward * vInput + transform.right * hzInput;
 
         controller.Move(dir.normalized * currentMoveSpeed * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime);
 
         //разворот таза в зависимости от направлни€
-        if(vInput == 0)
+        if (vInput == 0)
         {
             if (hzInput < 0)
             {
                 Ass.rotation = Quaternion.Euler(0, -65, 0) * transform.rotation;
                 runningAnimation.direction = 0;
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                    Teleport(0);
             }
             else if (hzInput > 0)
             {
@@ -126,20 +138,14 @@ public class MovementStateManager : MonoBehaviour
             }
         }
     }
-
-    bool IsGrounded()
+    void Jump()
     {
-        spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
-        if(Physics.CheckSphere(spherePos, controller.radius -0.05f, groundMask)) return true;
-        return false;
+        // –ассчитываем вертикальную скорость дл€ прыжка
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
-
-    void Gravity()
+    private void Teleport(int directionTeleport)
     {
-        if (!IsGrounded()) velocity.y += gravity * Time.deltaTime;
-        else if (velocity.y < 0) velocity.y = -2;
-
-        controller.Move(velocity * Time.deltaTime);
+        transform.position = transform.position - transform.right * 5;
     }
 
     public void IncreaseLevel()
