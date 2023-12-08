@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -31,5 +28,24 @@ public class Arrow : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.right, out RaycastHit hit, Mathf.Infinity, aimMask))
             aimPos.position = Vector3.Lerp(aimPos.position, hit.point, aimSmoothSpeed * Time.deltaTime);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        gameObject.transform.parent = other.transform;
+        rb.isKinematic = true;
+        transform.position = transform.position - transform.right * 0.5f;
+
+        Invoke("setTrailRenderer", 2);
+    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    gameObject.transform.parent = collision.transform;
+    //    rb.isKinematic = true;
+
+    //    Invoke("setTrailRenderer", 2);
+    //}
+    private void setTrailRenderer()
+    {
+        trailRenderer.SetActive(false);
     }
 }

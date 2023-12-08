@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
@@ -19,12 +17,6 @@ public class AimStateManager : MonoBehaviour
     [HideInInspector] public float hipFov;
     [HideInInspector] public float currentFov;
     public float fovSmoothSpeed = 10;
-
-    public GameObject pistolInHand;  // ссылка на объект пистолета в руках
-    public GameObject pistolInCabura; // ссылка на объект пистолета в Cabura
-    public Animator shootingAnimator; // ссылка на аниматор слоя Shooting
-
-    bool pistolInHandActive = true; // флаг, показывающий, активен ли пистолет в руках
     
     void Start()
     {
@@ -42,33 +34,7 @@ public class AimStateManager : MonoBehaviour
 
         vCam.m_Lens.FieldOfView = Mathf.Lerp(vCam.m_Lens.FieldOfView, currentFov, fovSmoothSpeed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            TogglePistol(); // вызываем функцию, которая переключает состояние пистолета
-        }
-
         currentState.UpdateState(this);
-    }
-
-    void TogglePistol()
-    {
-        pistolInHandActive = !pistolInHandActive; // инвертируем флаг
-
-        // Переключаем активность объектов в зависимости от состояния флага
-        pistolInHand.SetActive(pistolInHandActive);
-        pistolInCabura.SetActive(!pistolInHandActive);
-
-        // Активируем или дезактивируем слой аниматора в зависимости от состояния флага
-        if (pistolInHandActive)
-        {
-            // Если пистолет в руках, включаем слой Shooting
-            shootingAnimator.SetLayerWeight(shootingAnimator.GetLayerIndex("Shooting"), 1f);
-        }
-        else
-        {
-            // Если пистолет в Cabura, выключаем слой Shooting
-            shootingAnimator.SetLayerWeight(shootingAnimator.GetLayerIndex("Shooting"), 0f);
-        }
     }
 
     private void LateUpdate()

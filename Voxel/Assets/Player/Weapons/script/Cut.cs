@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BLINDED_AM_ME.Extensions;
-using System.Linq;
 using System.Threading;
 using System;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
-using Unity.Burst.CompilerServices;
 
 public class Cut : MonoBehaviour
 {
