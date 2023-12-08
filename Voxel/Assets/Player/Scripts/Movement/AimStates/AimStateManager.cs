@@ -10,7 +10,7 @@ public class AimStateManager : MonoBehaviour
     public AimState Aim = new AimState();
 
     [SerializeField] float mouseSense = 1;   
-    [SerializeField] Transform camFollowPos;
+    [SerializeField] Transform BodyDirection;
     float xAxis, yAxis;
 
     [HideInInspector] public Animator anim;
@@ -19,10 +19,6 @@ public class AimStateManager : MonoBehaviour
     [HideInInspector] public float hipFov;
     [HideInInspector] public float currentFov;
     public float fovSmoothSpeed = 10;
-
-    public Transform aimPos;
-    [SerializeField] float aimSmoothSpeed = 20;
-    [SerializeField] LayerMask aimMask;
 
     public GameObject pistolInHand;  // ссылка на объект пистолета в руках
     public GameObject pistolInCabura; // ссылка на объект пистолета в Cabura
@@ -45,12 +41,6 @@ public class AimStateManager : MonoBehaviour
         yAxis = Mathf.Clamp(yAxis, -80, 80);
 
         vCam.m_Lens.FieldOfView = Mathf.Lerp(vCam.m_Lens.FieldOfView, currentFov, fovSmoothSpeed * Time.deltaTime);
-
-        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenter);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimMask))
-            aimPos.position = Vector3.Lerp(aimPos.position, hit.point, aimSmoothSpeed * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -83,7 +73,7 @@ public class AimStateManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        camFollowPos.localEulerAngles = new Vector3(yAxis, camFollowPos.localEulerAngles.y, camFollowPos.localEulerAngles.z);
+        BodyDirection.localEulerAngles = new Vector3(yAxis, BodyDirection.localEulerAngles.y, BodyDirection.localEulerAngles.z);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, xAxis, transform.eulerAngles.z);
     }
 
