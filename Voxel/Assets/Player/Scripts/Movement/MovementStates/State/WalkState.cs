@@ -14,8 +14,8 @@ public class WalkState : MovementBaseState
         //if (Input.GetKey(KeyCode.LeftShift)) ExitState(movement, movement.Run);
         //else if (movement.dir.magnitude < 0.1f) ExitState(movement, movement.Idle);
 
-        if (movement.vInput < 0) movement.currentMoveSpeed = movement.walkBackSpeed;
-        else movement.currentMoveSpeed = movement.walkSpeed;
+        //if (movement.vInput < 0) movement.currentMoveSpeed = movement.walkBackSpeed;
+        //else movement.currentMoveSpeed = movement.walkSpeed;
     }
 
     void ExitState(MovementStateManager movement, MovementBaseState state)

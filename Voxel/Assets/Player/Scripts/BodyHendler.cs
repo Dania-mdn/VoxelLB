@@ -8,12 +8,12 @@ public class BodyHendler : MonoBehaviour
 
     public GameObject SwordHand;
     public GameObject BowHand;
+    public GameObject HammerHand;
     public GameObject Swordback;
     public GameObject Bowback;
+    public GameObject Hammerback;
 
     public GameObject BowrLeftHand;
-    private bool SwordReady = true;
-
     private int NumberWeapon = 1;
 
     public GameObject Arrow;
@@ -26,13 +26,15 @@ public class BodyHendler : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        if(SwordReady)
+        if(NumberWeapon == 1)
         {
             SwordHand.SetActive(true);
-            BowrLeftHand.SetActive(false);
+            BowHand.SetActive(false);
+            HammerHand.SetActive(false);
 
             Swordback.SetActive(false);
             Bowback.SetActive(true);
+            Hammerback.SetActive(true);
         }
     }
 
@@ -40,7 +42,7 @@ public class BodyHendler : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "idle" && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "HoldBow") return;
 
-        if (NumberWeapon == 1)
+        if (NumberWeapon == 1 || NumberWeapon == 3)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
             {
@@ -73,7 +75,7 @@ public class BodyHendler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if(NumberWeapon == 2)
+            if(NumberWeapon == 2 || NumberWeapon == 3)
             {
                 if (BowrLeftHand.activeSelf == true)
                 {
@@ -86,10 +88,23 @@ public class BodyHendler : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (NumberWeapon == 1)
+            if (NumberWeapon == 1 || NumberWeapon == 3)
             {
                 animator.Play("chanche");
                 NumberWeapon = 2;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (NumberWeapon == 1 || NumberWeapon == 2)
+            {
+                if (BowrLeftHand.activeSelf == true)
+                {
+                    BowHand.SetActive(true);
+                    BowrLeftHand.SetActive(false);
+                }
+                animator.Play("chanche");
+                NumberWeapon = 3;
             }
         }
     }
@@ -103,23 +118,36 @@ public class BodyHendler : MonoBehaviour
     }
     public void SetChanche()
     {
-        if (SwordReady)
-        {
-            SwordHand.SetActive(false);
-            BowHand.SetActive(true);
-
-            Swordback.SetActive(true);
-            Bowback.SetActive(false);
-        }
-        else
+        if (NumberWeapon == 1)
         {
             SwordHand.SetActive(true);
             BowHand.SetActive(false);
+            HammerHand.SetActive(false);
 
             Swordback.SetActive(false);
             Bowback.SetActive(true);
+            Hammerback.SetActive(true);
         }
-        SwordReady = !SwordReady;
+        else if(NumberWeapon == 2)
+        {
+            SwordHand.SetActive(false);
+            BowHand.SetActive(true);
+            HammerHand.SetActive(false);
+
+            Swordback.SetActive(true);
+            Bowback.SetActive(false);
+            Hammerback.SetActive(true);
+        }
+        else if(NumberWeapon == 3)
+        {
+            SwordHand.SetActive(false);
+            BowHand.SetActive(false);
+            HammerHand.SetActive(true);
+
+            Swordback.SetActive(true);
+            Bowback.SetActive(true);
+            Hammerback.SetActive(false);
+        }
     }
 
     public void SetchancheHendBow()

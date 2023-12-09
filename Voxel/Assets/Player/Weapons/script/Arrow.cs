@@ -15,6 +15,7 @@ public class Arrow : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
+        bc.enabled = false;
     }
     public void FireArrow()
     {
@@ -22,6 +23,7 @@ public class Arrow : MonoBehaviour
         rb.isKinematic = false;
         trailRenderer.SetActive(true);
         rb.AddForce(transform.right * speed, ForceMode.Impulse);
+        bc.enabled = true;
     }
     private void Update()
     {
@@ -37,16 +39,11 @@ public class Arrow : MonoBehaviour
         rb.isKinematic = true;
         transform.position = transform.position - transform.right * 1;
         bc.enabled = false;
+        if(other.transform.GetComponent<Rigidbody>() != null)
+            other.transform.GetComponent<Rigidbody>().AddForce(this.transform.right * 200);
 
         Invoke("setTrailRenderer", 2);
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    gameObject.transform.parent = collision.transform;
-    //    rb.isKinematic = true;
-
-    //    Invoke("setTrailRenderer", 2);
-    //}
     private void setTrailRenderer()
     {
         trailRenderer.SetActive(false);

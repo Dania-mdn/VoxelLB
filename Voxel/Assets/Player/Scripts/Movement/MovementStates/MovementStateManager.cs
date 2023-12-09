@@ -9,8 +9,7 @@ public class MovementStateManager : MonoBehaviour
     public RunningAnimation runningAnimation;
     public Transform Ass;
     public float currentMoveSpeed;
-    public float walkSpeed =4, walkBackSpeed =2;
-    public float runSpeed =8, runBackSpeed =5;
+    public float walkSpeed = 4;
 
     [HideInInspector] public Vector3 dir;
     [HideInInspector] public float hzInput, vInput;
@@ -18,7 +17,6 @@ public class MovementStateManager : MonoBehaviour
     #endregion
 
     #region GroundCheck
-    [SerializeField] float groundYOffset;
     [SerializeField] LayerMask groundMask;
     Vector3 spherePos;
     #endregion
@@ -76,8 +74,17 @@ public class MovementStateManager : MonoBehaviour
         vInput = Input.GetAxis("Vertical");
 
         dir = transform.forward * vInput + transform.right * hzInput;
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            currentMoveSpeed = 250;
+        else
+            currentMoveSpeed = walkSpeed;
 
-        controller.Move(dir.normalized * currentMoveSpeed * Time.deltaTime);
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            currentMoveSpeed = 0f;
+        }
+
+         controller.Move(dir.normalized * currentMoveSpeed * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
 
         //разворот таза в зависимости от направлния
@@ -87,8 +94,6 @@ public class MovementStateManager : MonoBehaviour
             {
                 Ass.rotation = Quaternion.Euler(0, -65, 0) * transform.rotation;
                 runningAnimation.direction = 0;
-                if (Input.GetKeyDown(KeyCode.LeftShift))
-                    Teleport(0);
             }
             else if (hzInput > 0)
             {
@@ -142,10 +147,6 @@ public class MovementStateManager : MonoBehaviour
     {
         // Рассчитываем вертикальную скорость для прыжка
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-    }
-    private void Teleport(int directionTeleport)
-    {
-        transform.position = transform.position - transform.right * 5;
     }
 
     public void IncreaseLevel()

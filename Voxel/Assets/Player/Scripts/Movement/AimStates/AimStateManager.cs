@@ -30,7 +30,7 @@ public class AimStateManager : MonoBehaviour
     {
         xAxis += Input.GetAxisRaw("Mouse X") * mouseSense;
         yAxis -= Input.GetAxisRaw("Mouse Y") * mouseSense;
-        yAxis = Mathf.Clamp(yAxis, -80, 80);
+        yAxis = Mathf.Clamp(yAxis, -40, 50);
 
         vCam.m_Lens.FieldOfView = Mathf.Lerp(vCam.m_Lens.FieldOfView, currentFov, fovSmoothSpeed * Time.deltaTime);
 
