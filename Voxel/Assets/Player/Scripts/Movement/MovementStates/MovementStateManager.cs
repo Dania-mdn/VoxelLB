@@ -12,6 +12,7 @@ public class MovementStateManager : MonoBehaviour
     public float walkSpeed = 4;
 
     [HideInInspector] public Vector3 dir;
+    private Vector3 dirr;
     [HideInInspector] public float hzInput, vInput;
     CharacterController controller;
     #endregion
@@ -84,7 +85,10 @@ public class MovementStateManager : MonoBehaviour
             currentMoveSpeed = 0f;
         }
 
-         controller.Move(dir.normalized * currentMoveSpeed * Time.deltaTime);
+        if (controller.isGrounded)
+            dirr = dir;
+
+        controller.Move(dirr.normalized * currentMoveSpeed * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
 
         //разворот таза в зависимости от направлния
