@@ -63,4 +63,5 @@ GraphicsSettings:
   m_LightsUseColorTemperature: 0
   m_DefaultRenderingLayerMask: 1
   m_LogWhenShaderIsCompiled: 0
-  m_SRPDefaultSettings: {}
+  m_SRPDefaultSettings:
+    UnityEngine.Rendering.HighDefinition.HDRenderPipeline: {fileID: 11400000, guid: 139598ea8afdd8d47807e40649c73e92, type: 2}
