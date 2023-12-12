@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BodyHendler : MonoBehaviour
 {
+    public PlayerOptions Optiuns;
+
     public Cut cut;
 
     private Animator animator;
@@ -15,12 +18,17 @@ public class BodyHendler : MonoBehaviour
 
     public GameObject BowrLeftHand;
     private int NumberWeapon = 1;
+    public GameObject[] UIWeapon;
 
     public GameObject Arrow;
     public Transform SpawnArrow;
     private GameObject SpawningArrow;
 
     public GameObject ArrowTarget;
+
+    private float currentMousePosition;
+    private float lastMousePosition;
+    private float mouseDelta;
 
     private void Start()
     {
@@ -36,6 +44,8 @@ public class BodyHendler : MonoBehaviour
             Bowback.SetActive(true);
             Hammerback.SetActive(true);
         }
+
+        SetWeaponUI(NumberWeapon);
     }
 
     private void Update()
@@ -44,21 +54,29 @@ public class BodyHendler : MonoBehaviour
 
         if (NumberWeapon == 1 || NumberWeapon == 3)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
+            currentMousePosition = Input.GetAxisRaw("Mouse X");
+            mouseDelta = (currentMousePosition - lastMousePosition) * Time.deltaTime;
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && (mouseDelta > -0.001f && mouseDelta < 0.001f))
             {
                 cut.cut = true;
                 animator.Play("attack");
+                EventSystem.DoAttack(Optiuns.ManaWeapon);
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == true)
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta > 0.001f)
             {
                 cut.cut = true;
                 animator.Play("left");
+                EventSystem.DoAttack(Optiuns.ManaWeapon);
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.D) == true)
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta < -0.001f)
             {
                 cut.cut = true;
                 animator.Play("right");
+                EventSystem.DoAttack(Optiuns.ManaWeapon);
             }
+
+            lastMousePosition = currentMousePosition;
         }
         else if(NumberWeapon == 2)
         {
@@ -148,6 +166,24 @@ public class BodyHendler : MonoBehaviour
             Bowback.SetActive(true);
             Hammerback.SetActive(false);
         }
+
+        SetWeaponUI(NumberWeapon);
+    }
+    private void SetWeaponUI(int Weapon)
+    {
+        for(int i = 0; i < UIWeapon.Length; i++)
+        {
+            if (i != Weapon)
+            {
+                UIWeapon[i].transform.localScale = Vector3.one;
+                UIWeapon[i].GetComponent<Image>().color = new Color(1, 1, 1, 0.4f);
+            }
+            else
+            {
+                UIWeapon[i].transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                UIWeapon[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            }
+        }
     }
 
     public void SetchancheHendBow()
@@ -170,7 +206,27 @@ public class BodyHendler : MonoBehaviour
         {
             SpawningArrow.GetComponent<Arrow>().FireArrow();
             SpawningArrow = null;
+            EventSystem.DoAttack(Optiuns.ManaWeapon);
         }
         ArrowTarget.SetActive(false);
     }
+    /*if (NumberWeapon == 1 || NumberWeapon == 3)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
+            {
+                cut.cut = true;
+                animator.Play("attack");
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == true)
+            {
+                cut.cut = true;
+                animator.Play("left");
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.D) == true)
+            {
+                cut.cut = true;
+                animator.Play("right");
+            }
+        }
+    */
 }

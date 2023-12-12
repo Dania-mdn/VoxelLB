@@ -80,7 +80,7 @@ public class MovementStateManager : MonoBehaviour
         else
             currentMoveSpeed = walkSpeed;
 
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && controller.isGrounded)
         {
             currentMoveSpeed = 0f;
         }
