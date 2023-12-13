@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerOptions : MonoBehaviour
 {
-    public float ManaWeapon;
+    [Header("UI")]
+    public float ManaForWeapon;
+    public float MaxMana;
+    public float ManaInSecond;
+
+    [Header("Movement")]
+    public float jumpHeight;
+    public float walkSpeed = 4;
+
     void Start()
     {
-        
-    }
-    void Update()
-    {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
