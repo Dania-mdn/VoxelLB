@@ -30,7 +30,6 @@ public class RunningAnimation : MonoBehaviour
         {
             animator.SetBool("running", false);
             animator.SetBool("runningback", false);
-            Debug.Log(0);
         }
     }
 }

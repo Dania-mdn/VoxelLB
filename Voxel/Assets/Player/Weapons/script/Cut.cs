@@ -18,7 +18,9 @@ public class Cut : MonoBehaviour
 	private int coldawn = 1;
 
 	public ParticleSystem ParticleSystem;
-	private void Update()
+
+	private Animator animatorRebind;
+    private void Update()
     {
 		if(time > 0)
         {
@@ -34,6 +36,11 @@ public class Cut : MonoBehaviour
 
         if (collision.collider.gameObject.tag != "dontCut")
         {
+			if(collision.collider.transform.root.GetComponent<Animator>() != null)
+            {
+                animatorRebind = collision.collider.transform.root.GetComponent<Animator>();
+            }
+
             if (collision.collider.gameObject.tag != "Untagged")
             {
                 Cutt(collision.collider.gameObject, timeLimit);
@@ -41,7 +48,9 @@ public class Cut : MonoBehaviour
             else
             {
                 if (time <= 0)
+                {
                     Cutt(collision.collider.gameObject, timeLimit);
+                }
             }
             ParticleSystem.Play();
 
@@ -49,8 +58,8 @@ public class Cut : MonoBehaviour
         }
     }
 
-		// this will hold up the UI thread
-		private void Cutt(GameObject target, CancellationToken cancellationToken = default)
+    // це затримає потік інтерфейсу користувача
+    private void Cutt(GameObject target, CancellationToken cancellationToken = default)
 		{
 			try
 			{
@@ -59,7 +68,7 @@ public class Cut : MonoBehaviour
 				cancellationToken = _previousTaskCancel.Token;
 				cancellationToken.ThrowIfCancellationRequested();
 
-				// get the victims mesh
+				// отримати сітку жертв
 				var leftSide = target;
 				var leftMeshFilter = leftSide.GetComponent<MeshFilter>();
 				var leftMeshRenderer = leftSide.GetComponent<MeshRenderer>();
@@ -67,7 +76,7 @@ public class Cut : MonoBehaviour
 				var materials = new List<Material>();
 				leftMeshRenderer.GetSharedMaterials(materials);
 
-				// the insides
+				// нутрощі
 				var capSubmeshIndex = 0;
 				if (materials.Contains(CapMaterial))
 					capSubmeshIndex = materials.IndexOf(CapMaterial);
@@ -77,7 +86,7 @@ public class Cut : MonoBehaviour
 					materials.Add(CapMaterial);
 				}
 
-				// set the blade relative to victim
+				// встановити лезо відносно жертви
 				var blade = new Plane(
 					leftSide.transform.InverseTransformDirection(transform.right),
 					leftSide.transform.InverseTransformPoint(transform.position));
@@ -85,13 +94,13 @@ public class Cut : MonoBehaviour
 				var mesh = leftMeshFilter.sharedMesh;
 				//var mesh = leftMeshFilter.mesh;
 
-				// Cut
+				// Вирізати
 				var pieces = mesh.Cut(blade, capSubmeshIndex, cancellationToken);
 
 				leftSide.name = "LeftSide";
 				leftMeshFilter.mesh = pieces.Item1;
 				leftMeshRenderer.sharedMaterials = materials.ToArray();
-				//leftMeshRenderer.materials = materials.ToArray();
+				leftMeshRenderer.materials = materials.ToArray();
 
 				var rightSide = new GameObject("RightSide");
 				var rightMeshFilter = rightSide.AddComponent<MeshFilter>();
@@ -102,12 +111,12 @@ public class Cut : MonoBehaviour
 
 				rightMeshFilter.mesh = pieces.Item2;
 				rightMeshRenderer.sharedMaterials = materials.ToArray();
-				//rightMeshRenderer.materials = materials.ToArray();
+				rightMeshRenderer.materials = materials.ToArray();
 
-				// Physics 
+				// Фізика 
 				Destroy(leftSide.GetComponent<Collider>());
 
-				// Replace
+				// Замінити
 				var leftCollider = leftSide.AddComponent<MeshCollider>();
 				leftCollider.convex = true;
 				leftCollider.sharedMesh = pieces.Item1;
@@ -123,6 +132,30 @@ public class Cut : MonoBehaviour
 				if (!rightSide.GetComponent<Rigidbody>())
 					rightSide.AddComponent<Rigidbody>();
 
+				leftSide.transform.parent = null;
+
+					Rigidbody[] childRigidbodies = leftSide.GetComponentsInChildren<Rigidbody>();
+
+				foreach (Rigidbody rb in childRigidbodies)
+				{
+					rb.isKinematic = false;
+				}
+            //for (int i = 0; i < leftSide.transform.childCount; i++)
+            //{
+            //	Transform child = leftSide.transform.GetChild(i);
+
+            //	// Получаем компонент Rigidbody
+            //	Rigidbody childRigidbody = child.GetComponent<Rigidbody>();
+
+            //	// Если у объекта есть компонент Rigidbody, отключаем кинематику
+            //	if (childRigidbody != null)
+            //	{
+            //	    childRigidbody.isKinematic = false; // Измените на true, если нужно включить кинематику
+            //	}
+            //}
+
+            leftSide.transform.DetachChildren();
+				animatorRebind.Rebind();
 			}
 			catch (Exception ex)
 			{
@@ -130,14 +163,14 @@ public class Cut : MonoBehaviour
 			}
 		}
 
-		// this will not hold up the UI thread
+		// це не затримає потік інтерфейсу користувача
 		private IEnumerator CutCoroutine(GameObject target, CancellationToken cancellationToken = default)
 		{
 			_previousTaskCancel?.Cancel();
 			_previousTaskCancel = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
 			cancellationToken = _previousTaskCancel.Token;
 
-			// get the victims mesh
+			// отримати сітку жертв
 			var leftSide = target;
 			var leftMeshFilter = leftSide.GetComponent<MeshFilter>();
 			var leftMeshRenderer = leftSide.GetComponent<MeshRenderer>();
@@ -145,7 +178,7 @@ public class Cut : MonoBehaviour
 			var materials = new List<Material>();
 			leftMeshRenderer.GetSharedMaterials(materials);
 
-			// the insides
+			// нутрощі
 			var capSubmeshIndex = 0;
 			if (materials.Contains(CapMaterial))
 				capSubmeshIndex = materials.IndexOf(CapMaterial);
@@ -155,7 +188,7 @@ public class Cut : MonoBehaviour
 				materials.Add(CapMaterial);
 			}
 
-			// set the blade relative to victim
+			// встановити лезо відносно жертви
 			var blade = new Plane(
 				leftSide.transform.InverseTransformDirection(transform.right),
 				leftSide.transform.InverseTransformPoint(transform.position));
@@ -163,14 +196,14 @@ public class Cut : MonoBehaviour
 			var mesh = leftMeshFilter.sharedMesh;
 			//var mesh = leftMeshFilter.mesh;
 
-			// Cut
+			// Вирізати
 			yield return mesh.CutCoroutine(blade,
 				(pieces) =>
 				{
 					leftSide.name = "LeftSide";
 					leftMeshFilter.mesh = pieces.Item1;
 					leftMeshRenderer.sharedMaterials = materials.ToArray();
-				//leftMeshRenderer.materials = materials.ToArray();
+					leftMeshRenderer.materials = materials.ToArray();
 
 				var rightSide = new GameObject("RightSide");
 					var rightMeshFilter = rightSide.AddComponent<MeshFilter>();
@@ -181,7 +214,7 @@ public class Cut : MonoBehaviour
 
 					rightMeshFilter.mesh = pieces.Item2;
 					rightMeshRenderer.sharedMaterials = materials.ToArray();
-				//rightMeshRenderer.materials = materials.ToArray();
+				rightMeshRenderer.materials = materials.ToArray();
 
 				// Physics 
 				Destroy(leftSide.GetComponent<Collider>());
