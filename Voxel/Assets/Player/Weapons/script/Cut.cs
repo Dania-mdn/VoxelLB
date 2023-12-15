@@ -7,6 +7,8 @@ using System;
 
 public class Cut : MonoBehaviour
 {
+	public WeaponHendler weaponHendler;
+
 	public Material CapMaterial;
 
 	private CancellationTokenSource _previousTaskCancel;
@@ -34,9 +36,15 @@ public class Cut : MonoBehaviour
 		
         var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
 
+        ParticleSystem.Play();
         if (collision.collider.gameObject.tag != "dontCut")
         {
-			if(collision.collider.transform.root.GetComponent<Animator>() != null)
+			if(collision.collider.gameObject.tag == "Armour")
+            {
+				weaponHendler.SetArmored();
+                return;
+            }
+			else if(collision.collider.transform.root.GetComponent<Animator>() != null)
             {
                 animatorRebind = collision.collider.transform.root.GetComponent<Animator>();
             }
@@ -52,7 +60,6 @@ public class Cut : MonoBehaviour
                     Cutt(collision.collider.gameObject, timeLimit);
                 }
             }
-            ParticleSystem.Play();
 
             time = coldawn;
         }

@@ -17,19 +17,10 @@ public class MovementStateManager : MonoBehaviour
     CharacterController controller;
     #endregion
 
-    #region GroundCheck
-    [SerializeField] LayerMask groundMask;
-    #endregion
-
     #region Gravity
     private float gravity = -9.81f;
     Vector3 velocity;
     #endregion
-
-
-    [HideInInspector] public Animator anim;
-
-    public int level = 1;
 
     void Start()
     {
@@ -62,7 +53,7 @@ public class MovementStateManager : MonoBehaviour
 
         dir = transform.forward * vInput + transform.right * hzInput;
         if (Input.GetKeyDown(KeyCode.LeftShift))
-            currentMoveSpeed = 250;
+            currentMoveSpeed = PlayerOptions.teleportArrou;
         else
             currentMoveSpeed = PlayerOptions.walkSpeed;
 
@@ -138,10 +129,4 @@ public class MovementStateManager : MonoBehaviour
         // Рассчитываем вертикальную скорость для прыжка
         velocity.y = Mathf.Sqrt(PlayerOptions.jumpHeight * -2f * gravity);
     }
-
-    public void IncreaseLevel()
-    {
-        level++;
-    }
-
 }

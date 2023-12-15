@@ -187,6 +187,10 @@ public class WeaponHendler : MonoBehaviour
             }
         }
     }
+    public void SetArmored()
+    {
+        animator.Play("Armored");
+    }
 
     public void SetchancheHendBow()
     {
