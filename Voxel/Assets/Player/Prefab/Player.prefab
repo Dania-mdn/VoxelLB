@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8621137854912757009}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,8 +405,9 @@ MonoBehaviour:
   ManaForWeapon: 1
   MaxMana: 5
   ManaInSecond: 0.02
-  jumpHeight: 1
+  jumpHeight: 3
   walkSpeed: 4
+  teleportArrou: 150
 --- !u!114 &2323080214206086191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,11 +427,6 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   hzInput: 0
   vInput: 0
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 9
-  anim: {fileID: 0}
-  level: 1
 --- !u!114 &2323080214206086165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,7 +456,7 @@ GameObject:
   - component: {fileID: 5723832225837297669}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,7 +539,7 @@ GameObject:
   - component: {fileID: 5603830340478591319}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -836,7 +832,7 @@ GameObject:
   - component: {fileID: 6561396097657291402}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -919,7 +915,7 @@ GameObject:
   - component: {fileID: 2567101899306631150}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1251,7 +1247,7 @@ GameObject:
   - component: {fileID: 1088936702231286377}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1334,7 +1330,7 @@ GameObject:
   - component: {fileID: 994354366623215418}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1667,7 +1663,7 @@ GameObject:
   - component: {fileID: 1623153312814926956}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1748,7 +1744,7 @@ GameObject:
   - component: {fileID: 8564439494561392056}
   m_Layer: 0
   m_Name: HandR
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7059,7 +7055,7 @@ GameObject:
   - component: {fileID: 8564439495212062283}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7464,7 +7460,7 @@ GameObject:
   - component: {fileID: 8564439495713664716}
   m_Layer: 0
   m_Name: HandL
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7497,7 +7493,7 @@ GameObject:
   - component: {fileID: 8564439495798284371}
   m_Layer: 0
   m_Name: BodyDirection
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7563,7 +7559,7 @@ GameObject:
   - component: {fileID: 8564439495904289876}
   m_Layer: 0
   m_Name: ForearmL
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7682,7 +7678,7 @@ GameObject:
   - component: {fileID: 8564439496064876221}
   m_Layer: 0
   m_Name: ForearmR
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7867,7 +7863,7 @@ GameObject:
   - component: {fileID: 8798460862366311874}
   m_Layer: 0
   m_Name: Body1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7952,7 +7948,7 @@ GameObject:
   - component: {fileID: 8165511169839324984}
   m_Layer: 0
   m_Name: Top2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

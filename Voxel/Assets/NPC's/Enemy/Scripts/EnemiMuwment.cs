@@ -5,15 +5,17 @@ using UnityEngine.Windows;
 
 public class EnemiMuwment : MonoBehaviour
 {
-    public Transform Player;
     private float _targetRotation = 0.0f;
+    public GameObject Head;
+    private float Angle;
 
-    CharacterController controller;
+    private CharacterController controller;
     public EnemyOptiuns enemiOptions;
     public float _rotationVelocity;
 
     private float gravity = -9.81f;
     Vector3 velocity;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -27,11 +29,12 @@ public class EnemiMuwment : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
 
-        GetDirectionAndMove();
+        GetDirectionAndMove(); 
+        SeaAnimation();
     }
     private void GetDirectionAndMove()
     {
-        Vector3 inputDirection = Player.transform.position - transform.position;
+        Vector3 inputDirection = enemiOptions.Player.transform.position - transform.position;
 
         _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
 
@@ -44,6 +47,23 @@ public class EnemiMuwment : MonoBehaviour
 
         controller.Move(targetDirection.normalized * enemiOptions.MoveSpeed * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
+
+        Angle = Vector3.Angle(transform.forward, inputDirection);
+        if (Angle < 70)
+            Head.transform.LookAt(enemiOptions.Player);
+        else
+            Head.transform.rotation = Quaternion.Euler(0f, gameObject.transform.eulerAngles.y, 0f);
+    }
+    public void SeaAnimation()
+    {
+        if(enemiOptions.MoveSpeed >= enemiOptions.crippleMoveSpeed)
+        {
+            enemiOptions.animatorLeg.SetBool("isMow", true);
+        }
+        else
+        {
+            enemiOptions.animatorLeg.SetBool("isMow", false);
+        }
     }
     private void Jump()
     {

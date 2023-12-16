@@ -21,7 +21,7 @@ public class Cut : MonoBehaviour
 
 	public ParticleSystem ParticleSystem;
 
-	private Animator animatorRebind;
+	private EnemyOptiuns EnemyOptiuns;
     private void Update()
     {
 		if(time > 0)
@@ -44,9 +44,9 @@ public class Cut : MonoBehaviour
 				weaponHendler.SetArmored();
                 return;
             }
-			else if(collision.collider.transform.root.GetComponent<Animator>() != null)
+			else if(collision.collider.transform.root.GetComponent<EnemyOptiuns>() != null)
             {
-                animatorRebind = collision.collider.transform.root.GetComponent<Animator>();
+				EnemyOptiuns = collision.collider.transform.root.GetComponent<EnemyOptiuns>();
             }
 
             if (collision.collider.gameObject.tag != "Untagged")
@@ -141,7 +141,7 @@ public class Cut : MonoBehaviour
 
 				leftSide.transform.parent = null;
 
-					Rigidbody[] childRigidbodies = leftSide.GetComponentsInChildren<Rigidbody>();
+				Rigidbody[] childRigidbodies = leftSide.GetComponentsInChildren<Rigidbody>();
 
 				foreach (Rigidbody rb in childRigidbodies)
 				{
@@ -162,7 +162,7 @@ public class Cut : MonoBehaviour
             //}
 
             leftSide.transform.DetachChildren();
-				animatorRebind.Rebind();
+				EnemyOptiuns.TakeHit();
 			}
 			catch (Exception ex)
 			{
