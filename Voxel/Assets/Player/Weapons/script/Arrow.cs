@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour
     public GameObject trailRenderer;
     public float speed;
 
-    [SerializeField] float aimSmoothSpeed = 20;
+    //[SerializeField] float aimSmoothSpeed = 20;
 
     private void Start()
     {

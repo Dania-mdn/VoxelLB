@@ -161,8 +161,11 @@ public class Cut : MonoBehaviour
             //	}
             //}
 
+            if (EnemyOptiuns != null)
+                EnemyOptiuns.TakeHit();
+
             leftSide.transform.DetachChildren();
-				EnemyOptiuns.TakeHit();
+
 			}
 			catch (Exception ex)
 			{

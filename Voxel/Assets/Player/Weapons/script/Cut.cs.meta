@@ -3,7 +3,10 @@ guid: 591ba73ee18e7404abefe8a95ddbdb32
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - weaponHendler: {instanceID: 0}
+  - CapMaterial: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  - ParticleSystem: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

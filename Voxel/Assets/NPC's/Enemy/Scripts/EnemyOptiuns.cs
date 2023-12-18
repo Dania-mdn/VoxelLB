@@ -52,6 +52,7 @@ public class EnemyOptiuns : MonoBehaviour
             MoveSpeed = crippleMoveSpeed;
         }
 
+        if(EnemiMuwment != null)
         EnemiMuwment.SeaAnimation();
     }
     public void SetPausaMow(bool isPause)

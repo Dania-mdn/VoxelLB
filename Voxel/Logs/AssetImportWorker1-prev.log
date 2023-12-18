@@ -11,13 +11,13 @@ D:\2021.3.5f1\Editor\Unity.exe
 -name
 AssetImportWorker1
 -projectPath
-J:/My project
+J:/VoxelLB/Voxel
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-49803
-Successfully changed project path to: J:/My project
-J:/My project
+50169
+Successfully changed project path to: J:/VoxelLB/Voxel
+J:/VoxelLB/Voxel
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -47,11 +47,11 @@ J:/My project
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 132.10 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 129.66 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.5f1 (40eb3a945986)
 [Subsystems] Discovering subsystems at path D:/2021.3.5f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path J:/My project/Assets
+[Subsystems] Discovering subsystems at path J:/VoxelLB/Voxel/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 10.0]
@@ -77,41 +77,41 @@ Initialize mono
 Mono path[0] = 'D:/2021.3.5f1/Editor/Data/Managed'
 Mono path[1] = 'D:/2021.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/2021.3.5f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56588
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56816
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/2021.3.5f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: D:/2021.3.5f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: D:/2021.3.5f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001979 seconds.
+Registered in 0.002003 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 125.60 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 125.89 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.575 seconds
+- Completed reload, in  0.586 seconds
 Domain Reload Profiling:
-	ReloadAssembly (575ms)
-		BeginReloadAssembly (58ms)
+	ReloadAssembly (586ms)
+		BeginReloadAssembly (63ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (438ms)
-			LoadAssemblies (58ms)
+		EndReloadAssembly (442ms)
+			LoadAssemblies (62ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (88ms)
+			SetupTypeCache (87ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (23ms)
-			SetupLoadedEditorAssemblies (288ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (291ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (43ms)
+				InitializePlatformSupportModulesInManaged (44ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (126ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (82ms)
+				ProcessInitializeOnLoadAttributes (83ms)
 				ProcessInitializeOnLoadMethodAttributes (36ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
@@ -119,112 +119,7 @@ Domain Reload Profiling:
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.004756 seconds.
+Registered in 0.004609 seconds.
 Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 129.94 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Package Manager log level set to [2]
-Mono: successfully reloaded assembly
-- Completed reload, in  1.498 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1499ms)
-		BeginReloadAssembly (205ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (126ms)
-		EndReloadAssembly (1203ms)
-			LoadAssemblies (86ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (273ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (63ms)
-			SetupLoadedEditorAssemblies (753ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (9ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (130ms)
-				BeforeProcessingInitializeOnLoad (121ms)
-				ProcessInitializeOnLoadAttributes (349ms)
-				ProcessInitializeOnLoadMethodAttributes (141ms)
-				AfterProcessingInitializeOnLoad (2ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 1.16 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6544 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 111 unused Assets / (1.9 MB). Loaded Objects now: 6980.
-Memory consumption went from 273.5 MB to 271.7 MB.
-Total: 6.131100 ms (FindLiveObjects: 0.398800 ms CreateObjectMapping: 0.395000 ms MarkObjects: 5.030000 ms  DeleteObjects: 0.306600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 1646715.405143 seconds.
-  path: Assets/IgniteCoders/Simple Water Shader/Resources/WaterReflection.renderTexture
-  artifactKey: Guid(4ae8ae7350b67b44785d874c413a2e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/IgniteCoders/Simple Water Shader/Resources/WaterReflection.renderTexture using Guid(4ae8ae7350b67b44785d874c413a2e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '884fed94ff2840c18dd95dce04b02028') in 0.084858 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 746.294882 seconds.
-  path: Assets/Player/Model/Hero-0.png
-  artifactKey: Guid(fb27ee4c8452cca44bb92392a095b4f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Player/Model/Hero-0.png using Guid(fb27ee4c8452cca44bb92392a095b4f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fad2303d07942b37d47a7d957d981cc') in 0.018112 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Player/Model/Hero-6.obj
-  artifactKey: Guid(0e86185ec07b96149a78bce006b55d85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Player/Model/Hero-6.obj using Guid(0e86185ec07b96149a78bce006b55d85) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Shader Shader Graphs/Decal is not supported: GPU does not support separate MRT blend modes
-Shader Shader Graphs/Decal is not supported: GPU does not support separate MRT blend modes
-Shader Shader Graphs/Decal is not supported: GPU does not support separate MRT blend modes
-Shader Shader Graphs/Decal is not supported: GPU does not support separate MRT blend modes
- -> (artifact id: '792cf2beb2020a8ff5ac6aadd1cfa778') in 0.202785 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Player/Model/Hero-7.png
-  artifactKey: Guid(0c8f1a644010f7b41ba1aa3f3949a2ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Player/Model/Hero-7.png using Guid(0c8f1a644010f7b41ba1aa3f3949a2ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48acd621039b214839363729d64fc359') in 0.006771 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Player/Model/Hero-8.obj
-  artifactKey: Guid(9579044395b1bd141935f079da220192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Player/Model/Hero-8.obj using Guid(9579044395b1bd141935f079da220192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bb76c34f642a1b4a12e94b7d3fd2f35') in 0.031805 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Player/Model/Hero-2.obj
-  artifactKey: Guid(750525f13c2d1a44e9e8e6b931d24483) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Player/Model/Hero-2.obj using Guid(750525f13c2d1a44e9e8e6b931d24483) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47074c88aefde45b530fa86d54d13307') in 0.030086 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Player/Model/Hero-11.obj
-  artifactKey: Guid(b5a154899b623b8428a568a525832646) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Player/Model/Hero-11.obj using Guid(b5a154899b623b8428a568a525832646) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '681c252ad0815e36d96dff20e0f4c638') in 0.030432 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Player/Model/Hero-7.obj
-  artifactKey: Guid(20fabb9d990eab146999dcc477a81b9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Player/Model/Hero-7.obj using Guid(20fabb9d990eab146999dcc477a81b9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3463a1a3f9ffb52b1920b2f135fc7e3') in 0.030544 seconds 
+Symbol file LoadedFromMemory doesn't match image J:\VoxelLB\Voxel\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image J:\VoxelLB\Voxel\Library\PackageCache\com.unity.visualscripting@1.7.2\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
