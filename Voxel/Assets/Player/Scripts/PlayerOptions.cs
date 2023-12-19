@@ -46,6 +46,7 @@ public class PlayerOptions : MonoBehaviour
             transform.position = machineController.SpawnPlayer.position;
             transform.rotation = machineController.SpawnPlayer.rotation;
             isMachine = true;
+            machineController.E.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.E) && isMachine == true)
         {
@@ -61,12 +62,14 @@ public class PlayerOptions : MonoBehaviour
         if (other.gameObject.tag == "Machine")
         {
             machineController = other.gameObject.GetComponent<MachineController>();
+            machineController.E.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Machine")
         {
+            machineController.E.SetActive(false);
             machineController = null;
         }
     }

@@ -16,7 +16,12 @@ public class MachineController : MonoBehaviour
     public Transform SpawnArrow;
     private GameObject SpawningArrow;
 
+    public GameObject False;
+    public GameObject True;
     public GameObject ArrowTarget;
+    public GameObject E;
+    public float Firerate;
+    private float TimeLate;
 
     private void Start()
     {
@@ -25,20 +30,39 @@ public class MachineController : MonoBehaviour
     void Update()
     {
         if(CinemachineVirtualCamera.Priority != 11)
+        {
             CinemachineVirtualCamera.Priority = 11;
+            ArrowTarget.SetActive(true);
+        }
 
         xAxis += Input.GetAxisRaw("Mouse X") * mouseSense;
         yAxis -= Input.GetAxisRaw("Mouse Y") * mouseSense;
         yAxis = Mathf.Clamp(yAxis, -40, 50); 
-        
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             this.enabled = false;
-            CinemachineVirtualCamera.Priority = 1;
+            CinemachineVirtualCamera.Priority = 1; 
+            ArrowTarget.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+
+        if(TimeLate > 0)
         {
-            FireArrow();
+            TimeLate = TimeLate - Time.deltaTime;
+            return;
+        }
+        else
+        {
+            if (SpawningArrow == null)
+            {
+                SpuwnArrow();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && SpawningArrow != null)
+        {
+            FireArrow(); 
+            TimeLate = Firerate;
         }
     }
 
@@ -49,7 +73,8 @@ public class MachineController : MonoBehaviour
     public void SpuwnArrow()
     {
         SpawningArrow = Instantiate(Arrow, SpawnArrow.position, SpawnArrow.rotation, SpawnArrow);
-        ArrowTarget.SetActive(true);
+        False.SetActive(false);
+        True.SetActive(true);
     }
     public void FireArrow()
     {
@@ -57,8 +82,8 @@ public class MachineController : MonoBehaviour
         {
             SpawningArrow.GetComponent<Arrow>().FireArrow();
             SpawningArrow = null;
+            False.SetActive(true);
+            True.SetActive(false);
         }
-        ArrowTarget.SetActive(false); 
-        SpuwnArrow();
     }
 }
