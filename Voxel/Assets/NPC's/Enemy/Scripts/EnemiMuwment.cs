@@ -56,13 +56,14 @@ public class EnemiMuwment : MonoBehaviour
     }
     public void SeaAnimation()
     {
-        if(enemiOptions.MoveSpeed >= enemiOptions.crippleMoveSpeed)
+        if(enemiOptions.MoveSpeed > enemiOptions.crippleMoveSpeed)
         {
             enemiOptions.animatorLeg.SetBool("isMow", true);
         }
         else
         {
             enemiOptions.animatorLeg.SetBool("isMow", false);
+            enemiOptions.animatorLeg.SetBool("crippleMove", true);
         }
     }
     private void Jump()

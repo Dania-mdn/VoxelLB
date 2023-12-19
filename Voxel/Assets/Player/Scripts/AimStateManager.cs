@@ -7,20 +7,13 @@ public class AimStateManager : MonoBehaviour
     [SerializeField] Transform BodyDirection;
     float xAxis, yAxis;
 
-    [HideInInspector] public Animator anim;
-    [HideInInspector] public CinemachineVirtualCamera vCam;
-    
-    void Start()
-    {
-        vCam = GetComponentInChildren<CinemachineVirtualCamera>();
-        anim = GetComponent<Animator>();
-    }
 
     void Update()
     {
         xAxis += Input.GetAxisRaw("Mouse X") * mouseSense;
         yAxis -= Input.GetAxisRaw("Mouse Y") * mouseSense;
         yAxis = Mathf.Clamp(yAxis, -40, 50);
+
     }
 
     private void LateUpdate()

@@ -79,6 +79,10 @@ public class EnemyOptiuns : MonoBehaviour
         }
 
         gameObject.transform.DetachChildren();
+
+        animatorBody.enabled = false;
+        animatorLeg.enabled = false;
+
         Invoke("InvokeDeat", 3);
     }
     private void InvokeDeat()
@@ -87,5 +91,6 @@ public class EnemyOptiuns : MonoBehaviour
         {
             Destroy(go.gameObject);
         }
+        Destroy(gameObject);
     }
 }
