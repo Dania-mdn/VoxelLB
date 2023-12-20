@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class EnemyOptiuns : MonoBehaviour
 {
+    public Transform Target;
     public Transform Player;
+    public Transform ForwardTarget;
+    public Transform LeftTarget;
+    public Transform RightTarget;
+    public Transform positionWolck;
 
     public Animator animatorBody;
     public Animator animatorLeg;
@@ -23,6 +28,8 @@ public class EnemyOptiuns : MonoBehaviour
     public GameObject Body;
     public GameObject LegL;
     public GameObject LegR;
+
+    public bool isFight;
 
     private void Start()
     {
@@ -92,5 +99,15 @@ public class EnemyOptiuns : MonoBehaviour
             Destroy(go.gameObject);
         }
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            Player = other.gameObject.transform;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+            Player = null;
     }
 }

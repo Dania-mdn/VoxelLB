@@ -6,8 +6,8 @@ public class EnemyAttck : MonoBehaviour
 {
     public EnemyOptiuns enemiOptions;
 
-    public GameObject Ray1;
-    public GameObject Ray2;
+    public Transform Ray1;
+    public Transform Ray2;
     private RaycastHit hit;
 
     public bool isArmored = false;
@@ -15,33 +15,33 @@ public class EnemyAttck : MonoBehaviour
     {
         if (isArmored) return;
 
-        if (Physics.Raycast(Ray1.transform.position, Ray1.transform.position - transform.position, out hit, 1))
+        if (Physics.Raycast(Ray1.position, Ray1.position - transform.position, out hit, 1))
         {
             if (hit.transform.tag == "Player")
             {
                 enemiOptions.animatorBody.Play("attacRight");
             }
         }
-        else if (Physics.Raycast(Ray2.transform.position, Ray2.transform.position - transform.position, out hit, 1))
+        else if (Physics.Raycast(Ray2.position, Ray2.forward, out hit, 1))
         {
             if (hit.transform.tag == "Player")
             {
                 enemiOptions.animatorBody.Play("attack");
             }
-            enemiOptions.SetPausaMow(true);
+            //enemiOptions.SetPausaMow(true); 
+            enemiOptions.isFight = true;
         }
         else
         {
-            enemiOptions.SetPausaMow(false);
+            //enemiOptions.SetPausaMow(false);
+            enemiOptions.isFight = false;
         }
     }
-    /*public void SetArmored()
+    private void OnDrawGizmos()
     {
-        enemiOptions.animatorBody.Play("armored");
-        isArmored = true;
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawRay(Ray1.transform.position, Ray1.position - transform.position * 1);
+        Gizmos.DrawRay(Ray2.transform.position, Ray2.forward * 1);
     }
-    public void SetArmoredFalse()
-    {
-        isArmored = false;
-    }*/
 }
