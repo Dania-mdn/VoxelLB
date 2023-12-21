@@ -27,11 +27,26 @@ public class EnemiMuwment : MonoBehaviour
 
     void Start()
     {
-        controller = GetComponent<CharacterController>(); 
-        enemiOptions.Target = enemiOptions.positionWolck;
+        controller = GetComponent<CharacterController>();
     }
     private void Update()
     {
+        if (!enemiOptions.isStop)
+            AvoidingObstances();
+
+        distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
+
+        if (distance < 1)
+        {
+            enemiOptions.isStop = true;
+            enemiOptions.SetPausaMow(true);
+        }
+        else
+        {
+            if (!enemiOptions.isStop)
+                enemiOptions.SetPausaMow(false);
+        }
+
         if (controller.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -42,19 +57,6 @@ public class EnemiMuwment : MonoBehaviour
         GetDirectionAndMove();
         SeaAnimation();
 
-        distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
-        if (distance < 2)
-        {
-            enemiOptions.isFight = true; //!!!
-            enemiOptions.SetPausaMow(true);
-        }
-        else
-        {
-            enemiOptions.SetPausaMow(false);
-        }
-
-        if (!enemiOptions.isFight)
-            AvoidingObstances();
     }
     private void AvoidingObstances()
     {
@@ -65,7 +67,7 @@ public class EnemiMuwment : MonoBehaviour
 
         for (int i = 0; i < 4;  i++)
         {
-            if (Physics.Raycast(Ray[i].transform.position, Ray[i].forward, out hit, 1))
+            if (Physics.Raycast(Ray[i].transform.position, Ray[i].forward, out hit, 2))
             {
                 if (hit.transform != null && hit.transform.tag != "Player")
                 {
@@ -89,7 +91,12 @@ public class EnemiMuwment : MonoBehaviour
         }
         if (forward && left == false && right == false || (forward && left && right))
         {
-            enemiOptions.Target = enemiOptions.LeftTarget;
+            int i = Random.Range(0, 2);
+            if(i == 0)
+                enemiOptions.Target = enemiOptions.LeftTarget;
+            else
+                enemiOptions.Target = enemiOptions.RightTarget;
+
             enemiOptions.SetPausaMow(true);
         }
         else if (forward && left && right == false)
@@ -110,6 +117,11 @@ public class EnemiMuwment : MonoBehaviour
         else if (forward == false && controller.isGrounded && both && enemiOptions.MoveSpeed > enemiOptions.crippleMoveSpeed)
         {
             Jump();
+
+            if (enemiOptions.Player != null)
+                enemiOptions.Target = enemiOptions.Player;
+            else
+                enemiOptions.Target = enemiOptions.positionWolck;
         }
         else
         {
@@ -171,9 +183,9 @@ public class EnemiMuwment : MonoBehaviour
     {
         Gizmos.color = Color.green;
 
-        Gizmos.DrawRay(Ray[0].transform.position, Ray[0].forward * 1.2F);
-        Gizmos.DrawRay(Ray[1].transform.position, Ray[1].forward * 1.2F);
-        Gizmos.DrawRay(Ray[2].transform.position, Ray[2].forward * 1.2F);
-        Gizmos.DrawRay(Ray[3].transform.position, Ray[3].forward * 1.2F);
+        Gizmos.DrawRay(Ray[0].transform.position, Ray[0].forward * 1.5f);
+        Gizmos.DrawRay(Ray[1].transform.position, Ray[1].forward * 1.5f);
+        Gizmos.DrawRay(Ray[2].transform.position, Ray[2].forward * 1.5f);
+        Gizmos.DrawRay(Ray[3].transform.position, Ray[3].forward * 1.5f);
     }
 }

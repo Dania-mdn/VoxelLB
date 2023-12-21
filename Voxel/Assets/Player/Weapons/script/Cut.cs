@@ -14,21 +14,9 @@ public class Cut : MonoBehaviour
 	private CancellationTokenSource _previousTaskCancel;
 
 	public bool cut = false;
-
-	private float time;
-
-	private int coldawn = 1;
-
 	public ParticleSystem ParticleSystem;
 
 	private EnemyOptiuns EnemyOptiuns;
-    private void Update()
-    {
-		if(time > 0)
-        {
-			time = time - Time.deltaTime;
-        }
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -36,32 +24,33 @@ public class Cut : MonoBehaviour
 		
         var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
 
-        ParticleSystem.Play();
-        if (collision.collider.gameObject.tag != "dontCut")
+        ParticleSystem.Play(); 
+		if (collision.collider.gameObject.tag == "Armour")
         {
-			if(collision.collider.gameObject.tag == "Armour")
+            weaponHendler.SetArmored();
+            return;
+        }
+        else
+        {
+            FindOptiuns(collision.collider.transform);
+        }
+
+        if (collision.collider.GetComponent<MeshRenderer>() != null)
+        {
+            Cutt(collision.collider.gameObject, timeLimit);
+        }
+    }
+    private void FindOptiuns(Transform collision)
+    {
+        while (collision != null)
+        {
+            if (collision.gameObject.GetComponent<EnemyOptiuns>() != null)
             {
-				weaponHendler.SetArmored();
-                return;
-            }
-			else if(collision.collider.transform.root.GetComponent<EnemyOptiuns>() != null)
-            {
-				EnemyOptiuns = collision.collider.transform.root.GetComponent<EnemyOptiuns>();
+                EnemyOptiuns = collision.GetComponent<EnemyOptiuns>();
+				break;
             }
 
-            if (collision.collider.gameObject.tag != "Untagged")
-            {
-                Cutt(collision.collider.gameObject, timeLimit);
-            }
-            else
-            {
-                if (time <= 0)
-                {
-                    Cutt(collision.collider.gameObject, timeLimit);
-                }
-            }
-
-            time = coldawn;
+            collision = collision.parent;
         }
     }
 
@@ -147,19 +136,6 @@ public class Cut : MonoBehaviour
 				{
 					rb.isKinematic = false;
 				}
-            //for (int i = 0; i < leftSide.transform.childCount; i++)
-            //{
-            //	Transform child = leftSide.transform.GetChild(i);
-
-            //	// Получаем компонент Rigidbody
-            //	Rigidbody childRigidbody = child.GetComponent<Rigidbody>();
-
-            //	// Если у объекта есть компонент Rigidbody, отключаем кинематику
-            //	if (childRigidbody != null)
-            //	{
-            //	    childRigidbody.isKinematic = false; // Измените на true, если нужно включить кинематику
-            //	}
-            //}
 
             if (EnemyOptiuns != null)
                 EnemyOptiuns.TakeHit();

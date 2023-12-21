@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class EnemyOptiuns : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class EnemyOptiuns : MonoBehaviour
 
     public Animator animatorBody;
     public Animator animatorLeg;
-    private CharacterController controller;
+    public CharacterController controller;
     private EnemiMuwment EnemiMuwment;
     private Transform[] child;
 
@@ -25,19 +27,18 @@ public class EnemyOptiuns : MonoBehaviour
 
     private float mediateMowecpeed;
 
-    public GameObject Body;
-    public GameObject LegL;
-    public GameObject LegR;
+    public Transform Body;
+    public Transform LegL;
+    public Transform LegR;
 
-    public bool isFight;
+    public bool isStop;
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
-
         MoveSpeed = healthyMoveSpeed;
 
         child = gameObject.GetComponentsInChildren<Transform>(true);
+        controller = GetComponent<CharacterController>();
     }
 
     public void TakeHit()
@@ -45,22 +46,35 @@ public class EnemyOptiuns : MonoBehaviour
         animatorBody.Rebind();
         animatorLeg.Rebind();
 
-        if(Body.transform.root.name != gameObject.name)
+        if (cripl(Body))
         {
             Deat();
         }
-        else if(LegL.transform.root.name != gameObject.name && LegR.transform.root.name != gameObject.name)
+        else if(cripl(LegL) && cripl(LegR))
         {
             MoveSpeed = 0;
             controller.height = 0;
         }
-        else if(LegL.transform.root.name != gameObject.name || LegR.transform.root.name != gameObject.name)
+        else if(cripl(LegL) || cripl(LegR))
         {
             MoveSpeed = crippleMoveSpeed;
         }
 
         if(EnemiMuwment != null)
-        EnemiMuwment.SeaAnimation();
+            EnemiMuwment.SeaAnimation();
+    }
+    private bool cripl(Transform leg)
+    {
+        while (leg != null)
+        {
+            leg = leg.parent;
+
+            if (leg == transform)
+            {
+                return false;
+            }
+        }
+        return true;
     }
     public void SetPausaMow(bool isPause)
     {
@@ -99,15 +113,5 @@ public class EnemyOptiuns : MonoBehaviour
             Destroy(go.gameObject);
         }
         Destroy(gameObject);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-            Player = other.gameObject.transform;
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-            Player = null;
     }
 }

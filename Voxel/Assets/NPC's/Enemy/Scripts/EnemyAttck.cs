@@ -28,13 +28,11 @@ public class EnemyAttck : MonoBehaviour
             {
                 enemiOptions.animatorBody.Play("attack");
             }
-            //enemiOptions.SetPausaMow(true); 
-            enemiOptions.isFight = true;
+            enemiOptions.isStop = true;
         }
         else
         {
-            //enemiOptions.SetPausaMow(false);
-            enemiOptions.isFight = false;
+            enemiOptions.isStop = false;
         }
     }
     private void OnDrawGizmos()
