@@ -11,6 +11,12 @@ public class PlayerOptions : MonoBehaviour
     public float MaxMana;
     [Range(0, 10)]
     public float ManaInSecond;
+    [Range(0, 10)]
+    public float HealthForWeapon;
+    [Range(0, 10)]
+    public float MaxHealth;
+    [Range(0, 10)]
+    public float HealthInSecond;
 
     [Header("Movement")]
     [Range(0, 10)]
@@ -28,6 +34,7 @@ public class PlayerOptions : MonoBehaviour
     [Header("machine")]
     private MachineController machineController;
     private bool isMachine = false;
+    public UIManager UIManager;
 
     void Start()
     {
@@ -71,6 +78,26 @@ public class PlayerOptions : MonoBehaviour
         {
             machineController.E.SetActive(false);
             machineController = null;
+        }
+    }
+    public bool TakeHit(float Damage)
+    {
+        if (UIManager.SliderHealth.value < Damage)
+        {
+
+            Rigidbody[] childRigidbodies = transform.GetComponentsInChildren<Rigidbody>();
+
+            foreach (Rigidbody rb in childRigidbodies)
+            {
+                rb.isKinematic = false;
+                rb.gameObject.transform.parent = null;
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

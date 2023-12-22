@@ -36,7 +36,7 @@ public class EnemiMuwment : MonoBehaviour
 
         distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
 
-        if (distance < 1)
+        if (distance < 1.4f)
         {
             enemiOptions.isStop = true;
             enemiOptions.SetPausaMow(true);

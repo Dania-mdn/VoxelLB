@@ -33,6 +33,9 @@ public class EnemyOptiuns : MonoBehaviour
 
     public bool isStop;
 
+    public float coldawn = 1;
+    public float Damage = 1;
+
     private void Start()
     {
         MoveSpeed = healthyMoveSpeed;
@@ -97,9 +100,8 @@ public class EnemyOptiuns : MonoBehaviour
         foreach (Rigidbody rb in childRigidbodies)
         {
             rb.isKinematic = false;
+            rb.gameObject.transform.parent = null;
         }
-
-        gameObject.transform.DetachChildren();
 
         animatorBody.enabled = false;
         animatorLeg.enabled = false;

@@ -15,7 +15,7 @@ public class EnemyAttck : MonoBehaviour
     {
         if (isArmored) return;
 
-        if (Physics.Raycast(Ray1.position, Ray1.position - transform.position, out hit, 1))
+        if (Physics.Raycast(Ray1.position, Ray1.position - transform.position, out hit, 1.5f))
         {
             if (hit.transform.tag == "Player")
             {

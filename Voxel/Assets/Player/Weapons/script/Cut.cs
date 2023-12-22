@@ -25,7 +25,8 @@ public class Cut : MonoBehaviour
         var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
 
         ParticleSystem.Play(); 
-		if (collision.collider.gameObject.tag == "Armour")
+
+		if (collision.collider.gameObject.layer == 3)
         {
             weaponHendler.SetArmored();
             return;

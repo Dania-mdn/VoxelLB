@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     public PlayerOptions PlayerOptions;
     public Slider SliderMana;
     private float Mana;
+    
+    public Slider SliderHealth;
+    private float Health;
 
     public GameObject Map;
     private bool isActiveMap = false;
@@ -15,20 +18,30 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         EventSystem.Attack += SetMana;
+        EventSystem.AttackHealth += SetHealth;
     }
     private void OnDisable()
     {
         EventSystem.Attack -= SetMana;
+        EventSystem.AttackHealth -= SetHealth;
     }
     private void Start()
     {
         SliderMana.value = PlayerOptions.MaxMana;
         Mana = PlayerOptions.MaxMana;
+
+        SliderHealth.value = PlayerOptions.MaxHealth;
+        Health = PlayerOptions.MaxHealth;
     }
     private void SetMana(float DeltaMana)
     {
         Mana = Mana - DeltaMana;
         SliderMana.value = Mana;
+    }
+    private void SetHealth(float DeltaHealth)
+    {
+        Health = Health - DeltaHealth;
+        SliderHealth.value = Health;
     }
     private void Update()
     {
@@ -42,7 +55,17 @@ public class UIManager : MonoBehaviour
                 EventSystem.SetReadyAction(true);
         }
 
-        if(Input.GetKeyDown(KeyCode.M))
+        if (Health < PlayerOptions.MaxHealth)
+        {
+            Health = Health + PlayerOptions.HealthInSecond;
+            SliderHealth.value = Health;
+            //if (Health < PlayerOptions.HealthForWeapon)
+            //    EventSystem.SetReadyAction(false);
+            //else
+            //    EventSystem.SetReadyAction(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
         {
             SetMapActive();
         }
