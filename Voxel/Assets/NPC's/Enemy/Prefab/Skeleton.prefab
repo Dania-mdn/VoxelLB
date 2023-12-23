@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CapMaterial: {fileID: 2100000, guid: 0ac8dcb14f266c5438ba40aeef9b9ca2, type: 2}
+  cut: 0
   enemyOptiuns: {fileID: 3452982911555028150}
   cuttime: 0
 --- !u!1 &3452982910197076377
@@ -708,6 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyOptiuns: {fileID: 3452982911555028150}
+  enemySword: {fileID: 2022336015173507473}
 --- !u!1 &3452982910520019224
 GameObject:
   m_ObjectHideFlags: 0

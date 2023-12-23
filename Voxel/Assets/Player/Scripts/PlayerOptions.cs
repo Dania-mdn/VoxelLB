@@ -35,6 +35,8 @@ public class PlayerOptions : MonoBehaviour
     private MachineController machineController;
     private bool isMachine = false;
     public UIManager UIManager;
+    public Animator AnimatorBody;
+    public Animator AnimatorAss;
 
     void Start()
     {
@@ -90,9 +92,13 @@ public class PlayerOptions : MonoBehaviour
             foreach (Rigidbody rb in childRigidbodies)
             {
                 rb.isKinematic = false;
-                rb.gameObject.transform.parent = null;
+                //rb.gameObject.transform.parent = null;
             }
-
+            transform.DetachChildren();
+            Destroy(gameObject);
+            AnimatorBody.enabled = false;
+            AnimatorAss.enabled = false;
+            Time.timeScale = 0.15f;
             return true;
         }
         else
