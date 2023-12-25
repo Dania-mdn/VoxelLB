@@ -45,29 +45,27 @@ public class EnemySword : MonoBehaviour
             return;
         }
 
-        if(time <= 0) 
+        time = enemyOptiuns.coldawn;
+        if (PlayerOptions != null)
         {
-            time = enemyOptiuns.coldawn;
-            if (PlayerOptions != null)
-            {
-                if (PlayerOptions.TakeHit(enemyOptiuns.Damage))
-                {
-                    if (collision.collider.GetComponent<MeshRenderer>() != null)
-                    {
-                        Cutt(collision.collider.gameObject, timeLimit);
-                    }
-                }
-                else
-                {
-                    EventSystem.DoAttackHealth(enemyOptiuns.Damage);
-                }
-            }
-            else
+            if (PlayerOptions.TakeHit(enemyOptiuns.Damage))
             {
                 if (collision.collider.GetComponent<MeshRenderer>() != null)
                 {
                     Cutt(collision.collider.gameObject, timeLimit);
                 }
+            }
+            else
+            {
+                EventSystem.DoAttackHealth(enemyOptiuns.Damage);
+                cut = false;
+            }
+        }
+        else
+        {
+            if (collision.collider.GetComponent<MeshRenderer>() != null)
+            {
+                Cutt(collision.collider.gameObject, timeLimit);
             }
         }
     }

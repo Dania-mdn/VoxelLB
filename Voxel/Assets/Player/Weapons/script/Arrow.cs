@@ -7,8 +7,6 @@ public class Arrow : MonoBehaviour
     public GameObject trailRenderer;
     public float speed;
 
-    //[SerializeField] float aimSmoothSpeed = 20;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,28 +21,29 @@ public class Arrow : MonoBehaviour
         rb.AddForce(transform.right * speed, ForceMode.Impulse);
         bc.enabled = true;
     }
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenter);
+        if (other.gameObject.layer == 8) return;
 
-        /*if (Physics.Raycast(transform.position, transform.right, out RaycastHit hit, Mathf.Infinity))
-            aimPos.position = Vector3.Lerp(aimPos.position, hit.point, aimSmoothSpeed * Time.deltaTime);*/
-    }
-    private void OnCollisionEnter(Collision other)
-    {
         if (other.transform.GetComponent<Rigidbody>() != null)
             other.transform.GetComponent<Rigidbody>().AddForce(this.transform.right * 200);
+
+        trailRenderer.transform.parent = null;
         Invoke("setTrailRenderer", 2);
 
-        if (other.gameObject.tag != "Armour")
+        if (other.gameObject.layer == 3)
+        {
+            bc.isTrigger = false;
+            rb.velocity = Vector3.zero;
+            transform.position = transform.position - transform.right * 2;
+        }
+        else
         {
             gameObject.transform.parent = other.transform;
             rb.isKinematic = true;
-            //transform.position = transform.position - transform.right * 1;
+            transform.position = transform.position - transform.right * 1;
             bc.enabled = false;
         }
-
     }
     private void setTrailRenderer()
     {

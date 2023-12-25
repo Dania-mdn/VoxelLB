@@ -19,11 +19,13 @@ public class EnemyOptiuns : MonoBehaviour
     private EnemiMuwment EnemiMuwment;
     private Transform[] child;
 
+    public bool isBowEnewmy;
     public float jumpHeight;
     public float MoveSpeed;
     public float healthyMoveSpeed;
     public float crippleMoveSpeed;
     public float RotationSmoothTime = 0.12f;
+    public float Firerate = 2;
 
     private float mediateMowecpeed;
 

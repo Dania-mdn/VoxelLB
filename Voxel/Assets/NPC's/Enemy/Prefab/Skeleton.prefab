@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 3452982910327318301}
   - component: {fileID: 4009793975603286914}
   - component: {fileID: 7725041411551131196}
-  - component: {fileID: 1063907646593842629}
+  - component: {fileID: 6838390405362728001}
   m_Layer: 2
   m_Name: BodyGroup
   m_TagString: Enemy
@@ -696,7 +696,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 11.19
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1063907646593842629
+--- !u!114 &6838390405362728001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -705,11 +705,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3452982910327318306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d5ea1a53a0d2814591c8dc9acb7e605, type: 3}
+  m_Script: {fileID: 11500000, guid: d818b7b449e517343a6a3dcfd5a7a06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyOptiuns: {fileID: 3452982911555028150}
+  enemiOptions: {fileID: 3452982911555028150}
   enemySword: {fileID: 2022336015173507473}
+  Ray1: {fileID: 6084843689892572393}
+  Ray2: {fileID: 7958081939083875807}
 --- !u!1 &3452982910520019224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1688,6 @@ GameObject:
   - component: {fileID: 3452982911555028151}
   - component: {fileID: 3452982911555028150}
   - component: {fileID: 3452982911555028145}
-  - component: {fileID: 6960670585752284418}
   m_Layer: 2
   m_Name: Skeleton
   m_TagString: Untagged
@@ -1764,6 +1765,7 @@ MonoBehaviour:
   healthyMoveSpeed: 3
   crippleMoveSpeed: 2
   RotationSmoothTime: 0.3
+  Firerate: 2
   Body: {fileID: 3486461157787510446}
   LegL: {fileID: 3452982911733232356}
   LegR: {fileID: 3452982911127587324}
@@ -1790,22 +1792,6 @@ MonoBehaviour:
   - {fileID: 1414608079274574738}
   - {fileID: 4654253778307846844}
   - {fileID: 8589152333344379397}
---- !u!114 &6960670585752284418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452982911555028155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d818b7b449e517343a6a3dcfd5a7a06c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiOptions: {fileID: 3452982911555028150}
-  Ray1: {fileID: 6084843689892572393}
-  Ray2: {fileID: 7958081939083875807}
-  isArmored: 0
 --- !u!1 &3452982911733232357
 GameObject:
   m_ObjectHideFlags: 0

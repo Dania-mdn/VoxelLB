@@ -38,19 +38,12 @@ public class PlayerOptions : MonoBehaviour
     public Animator AnimatorBody;
     public Animator AnimatorAss;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && machineController != null && isMachine == false)
         {
-            machineController.enabled = true;
-            AimStateManager.enabled = false;
-            MovementStateManager.enabled = false;
-            WeaponHendler.enabled = false;
+            machineController.enabled = true; 
+            EnebaPlayerController(false);
             transform.parent = machineController.SpawnPlayer.transform;
             transform.position = machineController.SpawnPlayer.position;
             transform.rotation = machineController.SpawnPlayer.rotation;
@@ -92,18 +85,25 @@ public class PlayerOptions : MonoBehaviour
             foreach (Rigidbody rb in childRigidbodies)
             {
                 rb.isKinematic = false;
-                //rb.gameObject.transform.parent = null;
+                rb.gameObject.transform.parent = null;
             }
             transform.DetachChildren();
             Destroy(gameObject);
             AnimatorBody.enabled = false;
             AnimatorAss.enabled = false;
             Time.timeScale = 0.15f;
+            EventSystem.DoEndGame();
             return true;
         }
         else
         {
             return false;
         }
+    }
+    public void EnebaPlayerController(bool Enable)
+    {
+        AimStateManager.enabled = Enable;
+        MovementStateManager.enabled = Enable;
+        WeaponHendler.enabled = Enable;
     }
 }

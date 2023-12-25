@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6490412052749342672}
   - component: {fileID: 9299880048449794}
   - component: {fileID: 4682402076692628345}
-  - component: {fileID: 2940060119871393313}
   - component: {fileID: 7755142750457231903}
   - component: {fileID: 7812552330735363484}
+  - component: {fileID: 459607142275325696}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -88,19 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2940060119871393313
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4670889348208386534}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.8383384, y: 1.2000003, z: 1.2000003}
-  m_Center: {x: 1.6285884, y: 1.8, z: -0.000000059604645}
 --- !u!54 &7755142750457231903
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,6 +118,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trailRenderer: {fileID: 7319863474801698497}
   speed: 50
+--- !u!65 &459607142275325696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670889348208386534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45137313, y: 0.12002838, z: 0.120028384}
+  m_Center: {x: 0.18432759, y: 0.18, z: 0}
 --- !u!1 &7319863474801698497
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,8 +155,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7319863474801698497}
-  m_LocalRotation: {x: -0.47593418, y: -0.48491973, z: 0.5338341, w: 0.50334954}
-  m_LocalPosition: {x: -4.921, y: 1.802, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.464, y: 0.182, z: 0.001}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
   m_ConstrainProportionsScale: 0
   m_Children: []

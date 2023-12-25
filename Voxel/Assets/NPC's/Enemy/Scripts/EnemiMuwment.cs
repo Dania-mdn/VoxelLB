@@ -9,6 +9,9 @@ public class EnemiMuwment : MonoBehaviour
     public GameObject Head;
     private float Angle;
     private float distance;
+    private float distanceValue;
+    private float distanceSwordValue = 1.4f;
+    private float distanceBowValue = 14;
 
     private CharacterController controller;
     public EnemyOptiuns enemiOptions;
@@ -36,7 +39,12 @@ public class EnemiMuwment : MonoBehaviour
 
         distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
 
-        if (distance < 1.4f)
+        if (enemiOptions.isBowEnewmy && enemiOptions.Target == enemiOptions.Player)
+            distanceValue = distanceBowValue;
+        else 
+            distanceValue = distanceSwordValue;
+
+        if (distance < distanceValue)
         {
             enemiOptions.isStop = true;
             enemiOptions.SetPausaMow(true);
@@ -45,6 +53,7 @@ public class EnemiMuwment : MonoBehaviour
         {
             if (!enemiOptions.isStop)
                 enemiOptions.SetPausaMow(false);
+            enemiOptions.isStop = false;
         }
 
         if (controller.isGrounded && velocity.y < 0)
