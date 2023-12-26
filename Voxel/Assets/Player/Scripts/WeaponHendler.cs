@@ -5,7 +5,7 @@ public class WeaponHendler : MonoBehaviour
 {
     public PlayerOptions PlayerOptions;
 
-    public Cut cut;
+    public Sword cut;
 
     private Animator animator;
 
@@ -96,19 +96,19 @@ public class WeaponHendler : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta == 0)
             {
-                cut.cut = true;
+                cut.isCut = true;
                 animator.Play("attack");
                 EventSystem.DoAttack(PlayerOptions.ManaForWeapon);
             }
             else if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta > 0)
             {
-                cut.cut = true;
+                cut.isCut = true;
                 animator.Play("left");
                 EventSystem.DoAttack(PlayerOptions.ManaForWeapon);
             }
             else if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta < 0)
             {
-                cut.cut = true;
+                cut.isCut = true;
                 animator.Play("right");
                 EventSystem.DoAttack(PlayerOptions.ManaForWeapon);
             }
@@ -130,11 +130,11 @@ public class WeaponHendler : MonoBehaviour
     }
     public void SetCutfalse()
     {
-        cut.cut = false;
+        cut.isCut = false;
     }
     public void SetCuttrue()
     {
-        cut.cut = true;
+        cut.isCut = true;
     }
     public void SetChanche()
     {
@@ -203,7 +203,7 @@ public class WeaponHendler : MonoBehaviour
     
     public void SpuwnArrow()
     {
-        SpawningArrow = Instantiate(Arrow, SpawnArrow.position, SpawnArrow.rotation, BowrLeftHand.transform);
+        SpawningArrow = Instantiate(Arrow, SpawnArrow.position, SpawnArrow.rotation, SpawnArrow.transform);
         ArrowTarget.SetActive(true);
     }
     public void FireArrow()
@@ -216,23 +216,4 @@ public class WeaponHendler : MonoBehaviour
         }
         ArrowTarget.SetActive(false);
     }
-    /*if (NumberWeapon == 1 || NumberWeapon == 3)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
-            {
-                cut.cut = true;
-                animator.Play("attack");
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.A) == true)
-            {
-                cut.cut = true;
-                animator.Play("left");
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.D) == true)
-            {
-                cut.cut = true;
-                animator.Play("right");
-            }
-        }
-    */
 }

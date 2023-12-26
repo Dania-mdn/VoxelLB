@@ -61,7 +61,7 @@ public class PlayerOptions : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Machine")
+        if (other.gameObject.layer == 6)
         {
             machineController = other.gameObject.GetComponent<MachineController>();
             machineController.E.SetActive(true);
@@ -69,7 +69,7 @@ public class PlayerOptions : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Machine")
+        if (other.gameObject.layer == 6)
         {
             machineController.E.SetActive(false);
             machineController = null;

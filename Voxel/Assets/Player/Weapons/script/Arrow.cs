@@ -1,52 +1,81 @@
+using System.Threading;
+using System;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    private Rigidbody rb;
     private BoxCollider bc;
+    private Rigidbody rb;
     public GameObject trailRenderer;
     public float speed;
+    private Cut Cut;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
+        rb = GetComponent<Rigidbody>();
         bc.enabled = false;
+
+        Cut = GetComponent<Cut>();
     }
     public void FireArrow()
     {
         transform.parent = null;
-        rb.isKinematic = false;
         trailRenderer.SetActive(true);
-        rb.AddForce(transform.right * speed, ForceMode.Impulse);
         bc.enabled = true;
     }
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.gameObject.layer == 8) return;
+        if (rb.useGravity == false && transform.parent == null)
+            rb.velocity = transform.forward * speed;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 8) return;
 
-        if (other.transform.GetComponent<Rigidbody>() != null)
-            other.transform.GetComponent<Rigidbody>().AddForce(this.transform.right * 200);
+        var timeLimit = new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token;
 
         trailRenderer.transform.parent = null;
-        Invoke("setTrailRenderer", 2);
+        Invoke("DestroyTrayl", 2);
+        Destroy(gameObject, 3);
 
-        if (other.gameObject.layer == 3)
+        rb.useGravity = true;
+
+        if (collision.gameObject.layer != 3)
         {
-            bc.isTrigger = false;
-            rb.velocity = Vector3.zero;
-            transform.position = transform.position - transform.right * 2;
+            FindOptiuns(collision.collider.transform); 
+
+            if (collision.collider.GetComponent<MeshRenderer>() != null)
+            {
+                Cut.Cutt(collision.collider.gameObject, timeLimit);
+            }
+            else
+            {
+                rb.useGravity = false;
+                rb.isKinematic = true;
+                gameObject.transform.parent = collision.transform;
+            }
+            Destroy(bc);
         }
-        else
-        {
-            gameObject.transform.parent = other.transform;
-            rb.isKinematic = true;
-            transform.position = transform.position - transform.right * 1;
-            bc.enabled = false;
-        }
+
+        if (collision.transform.GetComponent<Rigidbody>() != null)
+            collision.transform.GetComponent<Rigidbody>().AddForce(this.transform.right * 200);
     }
-    private void setTrailRenderer()
+    private void DestroyTrayl()
     {
-        trailRenderer.SetActive(false);
+        Destroy(trailRenderer);
+    }
+    private void FindOptiuns(Transform collision)
+    {
+        while (collision != null)
+        {
+            if (collision.gameObject.GetComponent<EnemyOptiuns>() != null)
+            {
+                Cut.enemyOptiuns = collision.GetComponent<EnemyOptiuns>();
+                break;
+            }
+
+            collision = collision.parent;
+        }
     }
 }

@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: 591ba73ee18e7404abefe8a95ddbdb32
+guid: 316873ca09e46dd40aa0c4bcdb2e711c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - weaponHendler: {instanceID: 0}
-  - CapMaterial: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
-  - ParticleSystem: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

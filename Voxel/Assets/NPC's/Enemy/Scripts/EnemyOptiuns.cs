@@ -12,6 +12,7 @@ public class EnemyOptiuns : MonoBehaviour
     public Transform LeftTarget;
     public Transform RightTarget;
     public Transform positionWolck;
+    public float Angle;
 
     public Animator animatorBody;
     public Animator animatorLeg;
@@ -114,6 +115,7 @@ public class EnemyOptiuns : MonoBehaviour
     {
         foreach (Transform go in child)
         {
+            if(go != null)
             Destroy(go.gameObject);
         }
         Destroy(gameObject);

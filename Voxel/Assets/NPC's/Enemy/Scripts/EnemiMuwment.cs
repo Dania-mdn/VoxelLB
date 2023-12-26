@@ -7,7 +7,6 @@ public class EnemiMuwment : MonoBehaviour
 {
     private float _targetRotation = 0.0f;
     public GameObject Head;
-    private float Angle;
     private float distance;
     private float distanceValue;
     private float distanceSwordValue = 1.4f;
@@ -35,7 +34,16 @@ public class EnemiMuwment : MonoBehaviour
     private void Update()
     {
         if (!enemiOptions.isStop)
+        {
             AvoidingObstances();
+        }
+        else
+        {
+            if (enemiOptions.Player != null)
+                enemiOptions.Target = enemiOptions.Player;
+            else
+                enemiOptions.Target = enemiOptions.positionWolck;
+        }
 
         distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
 
@@ -158,9 +166,9 @@ public class EnemiMuwment : MonoBehaviour
         controller.Move(targetDirection.normalized * enemiOptions.MoveSpeed * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
 
-        Angle = Vector3.Angle(transform.forward, inputDirection);
+        enemiOptions.Angle = Vector3.Angle(transform.forward, inputDirection);
 
-        if (Angle < 70 && enemiOptions.Target == enemiOptions.Player)
+        if (enemiOptions.Angle < 70 && enemiOptions.Target == enemiOptions.Player)
             Head.transform.LookAt(enemiOptions.Player);
         else
             Head.transform.rotation = Quaternion.Euler(0f, gameObject.transform.eulerAngles.y, 0f);
