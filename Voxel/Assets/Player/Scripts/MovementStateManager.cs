@@ -53,9 +53,21 @@ public class MovementStateManager : MonoBehaviour
 
         dir = transform.forward * vInput + transform.right * hzInput;
         if (Input.GetKeyDown(KeyCode.LeftShift))
-            currentMoveSpeed = PlayerOptions.teleportArrou;
+        {
+            if (!EventSystem.readyTeleport)
+            {
+                EventSystem.DoEmptiMana();
+            }
+            else
+            {
+                currentMoveSpeed = PlayerOptions.teleportArrou;
+                EventSystem.DoAttack(PlayerOptions.ManaForTeleport);
+            }
+        }
         else
+        {
             currentMoveSpeed = PlayerOptions.walkSpeed;
+        }
 
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && controller.isGrounded)
         {

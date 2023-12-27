@@ -6,7 +6,13 @@ public class PlayerOptions : MonoBehaviour
 {
     [Header("UI")]
     [Range(0, 10)]
-    public float ManaForWeapon;
+    public float ManaForTeleport;
+    [Range(0, 10)]
+    public float ManaForSword;
+    [Range(0, 10)]
+    public float ManaForBow;
+    [Range(0, 10)]
+    public float ManaForHammer;
     [Range(0, 10)]
     public float MaxMana;
     [Range(0, 10)]

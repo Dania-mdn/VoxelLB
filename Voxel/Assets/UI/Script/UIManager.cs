@@ -15,16 +15,20 @@ public class UIManager : MonoBehaviour
     public GameObject Indicator;
     public GameObject MainMenu;
     public GameObject Map;
+    public Animation EmptiMana;
+    public Animation AnimHealth;
     private bool isActiveMap = false;
 
     private void OnEnable()
     {
+        EventSystem.EmptiMana += SetEmptiMana;
         EventSystem.Attack += SetMana;
         EventSystem.AttackHealth += SetHealth;
         EventSystem.EndGame += EndGame;
     }
     private void OnDisable()
     {
+        EventSystem.EmptiMana -= SetEmptiMana;
         EventSystem.Attack -= SetMana;
         EventSystem.AttackHealth -= SetHealth;
         EventSystem.EndGame -= EndGame;
@@ -34,10 +38,10 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
 
-        SliderMana.value = PlayerOptions.MaxMana;
+        SliderMana.maxValue = PlayerOptions.MaxMana;
         Mana = PlayerOptions.MaxMana;
 
-        SliderHealth.value = PlayerOptions.MaxHealth;
+        SliderHealth.maxValue = PlayerOptions.MaxHealth;
         Health = PlayerOptions.MaxHealth;
     }
     private void SetMana(float DeltaMana)
@@ -48,7 +52,12 @@ public class UIManager : MonoBehaviour
     private void SetHealth(float DeltaHealth)
     {
         Health = Health - DeltaHealth;
-        SliderHealth.value = Health;
+        SliderHealth.value = Health; 
+        AnimHealth.Play();
+    }
+    private void SetEmptiMana()
+    {
+        EmptiMana.Play();
     }
     private void Update()
     {
@@ -56,10 +65,28 @@ public class UIManager : MonoBehaviour
         {
             Mana = Mana + PlayerOptions.ManaInSecond;
             SliderMana.value = Mana;
-            if (Mana < PlayerOptions.ManaForWeapon)
-                EventSystem.SetReadyAction(false);
+
+            if (Mana < PlayerOptions.ManaForSword)
+                EventSystem.SetReadySword(false);
             else
-                EventSystem.SetReadyAction(true);
+                EventSystem.SetReadySword(true);
+
+            if (Mana < PlayerOptions.ManaForBow)
+                EventSystem.SetReadyBow(false);
+            else
+                EventSystem.SetReadyBow(true);
+
+            if (Mana < PlayerOptions.ManaForHammer)
+
+                EventSystem.SetReadyHammer(false);
+            else
+                EventSystem.SetReadyHammer(true);
+
+            if (Mana < PlayerOptions.ManaForTeleport)
+
+                EventSystem.SetReadyTeleport(false);
+            else
+                EventSystem.SetReadyTeleport(true);
         }
 
         if (Health < PlayerOptions.MaxHealth)

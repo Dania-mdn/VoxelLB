@@ -45,7 +45,8 @@ public class EnemiMuwment : MonoBehaviour
                 enemiOptions.Target = enemiOptions.positionWolck;
         }
 
-        distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
+        if(enemiOptions.Target != null)
+            distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
 
         if (enemiOptions.isBowEnewmy && enemiOptions.Target == enemiOptions.Player)
             distanceValue = distanceBowValue;
@@ -88,6 +89,7 @@ public class EnemiMuwment : MonoBehaviour
             {
                 if (hit.transform != null && hit.transform.tag != "Player")
                 {
+                    //Debug.Log(i + " " + hit.transform.name + hit.transform.parent.parent.name);
                     switch (i)
                     {
                         case 0:

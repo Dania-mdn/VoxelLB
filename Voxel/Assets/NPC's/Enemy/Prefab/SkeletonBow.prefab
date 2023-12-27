@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 2739588938199917449}
   - component: {fileID: 8833111120031303223}
   - component: {fileID: 4556706640113467908}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BodyGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1326,7 +1326,8 @@ MonoBehaviour:
   healthyMoveSpeed: 3
   crippleMoveSpeed: 2
   RotationSmoothTime: 0
-  Firerate: 2
+  Firerate: 1.5
+  Head: {fileID: 0}
   Body: {fileID: 2432852050694117029}
   LegL: {fileID: 4488446528774554351}
   LegR: {fileID: 4488446528170113527}
@@ -1340,7 +1341,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4488446528608826544}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf8eec4f109d43b4fb49b606ff45a2de, type: 3}
   m_Name: 
@@ -2054,7 +2055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1049826586915384023}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BodyGroup0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

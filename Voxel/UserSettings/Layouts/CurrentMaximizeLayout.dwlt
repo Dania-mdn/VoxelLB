@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 66907
+  controlID: 62
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 66908
+  controlID: 63
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -461,7 +461,7 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.15113963, y: 0.8105268, z: -0.23878494, w: 0.5130227}
     speed: 2
-    m_Value: {x: 0.15042204, y: 0.8120592, z: -0.2392364, w: 0.5105869}
+    m_Value: {x: 0.15113963, y: 0.8105267, z: -0.23878494, w: 0.5130227}
   m_Size:
     m_Target: 7.139909
     speed: 2
@@ -722,7 +722,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 407}
     m_SelectedIDs: 368d0000
     m_LastClickedID: 36150
-    m_ExpandedIDs: 00000000388b00003a8b00003c8b00003e8b0000408b0000428b0000e48c0000e68c0000f28c0000
+    m_ExpandedIDs: 000000003e8b0000408b0000428b0000448b0000468b0000488b00004a8b00004c8b00004e8b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -750,7 +750,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000388b00003a8b00003c8b00003e8b0000408b0000428b0000e48c0000e68c0000f28c0000
+    m_ExpandedIDs: 000000003e8b0000408b0000428b0000448b0000468b0000488b00004a8b00004c8b00004e8b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -894,7 +894,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -6706
+  m_LastSelectedObjectID: -622682
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1845,24 +1845,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 1575}
-      m_SelectedIDs: a67ff6ff
-      m_LastClickedID: -622682
-      m_ExpandedIDs: 16ddf6ff3084f7ff8aadf7fff61cf8fff8a7f8ffb273f9ff167ef9ffd88ef9ffaa94f9fff098f9ffb09cf9ff46e5fdffe2e8fdffdafbfdff5e7fffff58e5ffff6ce5ffff76e5ffff7ce5ffff86e5ffff8ce5ffffc0e5ffff72e6ffff7ae6ffff86e6ffff8ae6ffff92e6ffffa4e6ffffb0e6ffffc0e6ffffc8e6ffffdae6ffffece6ffff4ce7ffff5ee7ffff6ce7ffff78e8ffff82e8ffff88e8ffff92e8ffff98e8ffffcce8ffffd6e8ffff6eedffff78edffff7eedffff88edffff92edffffcaeeffffd4eeffffdaeeffff08efffff10efffff22efffff28efffff32efffff38efffff42efffff48efffff58efffff62efffff68efffff72efffff78efffff82efffff9cefffffa2efffffacefffffeef0fffffcf0ffff08f1ffff18f1ffff40f7ffff4af7ffff50f7ffff5af7ffff60f7ffff92f7ffff9af8ffff9ef8ffff1efaffff26faffff64faffff68fafffffcfaffff167600006277000094770000d077000082790000ae7900000a7a0000967a0000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: fcfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: SkeletonBow (1)
-        m_OriginalName: SkeletonBow (1)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -622682
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 13}
       m_SearchString: 

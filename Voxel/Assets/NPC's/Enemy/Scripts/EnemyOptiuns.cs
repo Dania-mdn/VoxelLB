@@ -30,6 +30,7 @@ public class EnemyOptiuns : MonoBehaviour
 
     private float mediateMowecpeed;
 
+    public Transform Head;
     public Transform Body;
     public Transform LegL;
     public Transform LegR;
@@ -52,13 +53,14 @@ public class EnemyOptiuns : MonoBehaviour
         animatorBody.Rebind();
         animatorLeg.Rebind();
 
-        if (cripl(Body))
+        if (cripl(Body) || cripl(Head))
         {
             Deat();
         }
         else if(cripl(LegL) && cripl(LegR))
         {
             MoveSpeed = 0;
+            controller.center = new Vector3(0, -0.11f, 0);
             controller.height = 0;
         }
         else if(cripl(LegL) || cripl(LegR))

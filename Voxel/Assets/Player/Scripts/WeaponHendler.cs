@@ -6,6 +6,7 @@ public class WeaponHendler : MonoBehaviour
     public PlayerOptions PlayerOptions;
 
     public Sword cut;
+    public Hummer hummer;
 
     private Animator animator;
 
@@ -87,8 +88,6 @@ public class WeaponHendler : MonoBehaviour
             }
         }
 
-        if (!EventSystem.readyAction) return;
-
         if (NumberWeapon == 1 || NumberWeapon == 3)
         {
             currentMousePosition = Input.GetAxisRaw("Mouse X");
@@ -96,27 +95,53 @@ public class WeaponHendler : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta == 0)
             {
-                cut.isCut = true;
-                animator.Play("attack");
-                EventSystem.DoAttack(PlayerOptions.ManaForWeapon);
+                if (!EventSystem.readySword) 
+                {
+                    EventSystem.DoEmptiMana();
+                }
+                else
+                {
+                    cut.isCut = true;
+                    animator.Play("attack");
+                    if (NumberWeapon == 1) EventSystem.DoAttack(PlayerOptions.ManaForSword);
+                    else if (NumberWeapon == 3) EventSystem.DoAttack(PlayerOptions.ManaForHammer);
+                }
             }
             else if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta > 0)
             {
-                cut.isCut = true;
-                animator.Play("left");
-                EventSystem.DoAttack(PlayerOptions.ManaForWeapon);
+                if (!EventSystem.readySword)
+                {
+                    EventSystem.DoEmptiMana();
+                }
+                else
+                {
+                    cut.isCut = true;
+                    animator.Play("left");
+                    if (NumberWeapon == 1) EventSystem.DoAttack(PlayerOptions.ManaForSword);
+                    else if (NumberWeapon == 3) EventSystem.DoAttack(PlayerOptions.ManaForHammer);
+                }
             }
             else if (Input.GetKeyDown(KeyCode.Mouse0) && mouseDelta < 0)
             {
-                cut.isCut = true;
-                animator.Play("right");
-                EventSystem.DoAttack(PlayerOptions.ManaForWeapon);
+                if (!EventSystem.readySword)
+                {
+                    EventSystem.DoEmptiMana();
+                }
+                else
+                {
+                    cut.isCut = true;
+                    animator.Play("right");
+                    if (NumberWeapon == 1) EventSystem.DoAttack(PlayerOptions.ManaForSword);
+                    else if (NumberWeapon == 3) EventSystem.DoAttack(PlayerOptions.ManaForHammer);
+                }
             }
 
             lastMousePosition = currentMousePosition;
         }
         else if(NumberWeapon == 2)
         {
+            if (!EventSystem.readyBow) return;
+
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 animator.Play("BowAttack");
@@ -130,11 +155,13 @@ public class WeaponHendler : MonoBehaviour
     }
     public void SetCutfalse()
     {
-        cut.isCut = false;
+        cut.isCut = false; 
+        hummer.isBAAAM = false;
     }
     public void SetCuttrue()
     {
         cut.isCut = true;
+        hummer.isBAAAM = true;
     }
     public void SetChanche()
     {
@@ -211,8 +238,8 @@ public class WeaponHendler : MonoBehaviour
         if(SpawningArrow != null)
         {
             SpawningArrow.GetComponent<Arrow>().FireArrow();
-            SpawningArrow = null;
-            EventSystem.DoAttack(PlayerOptions.ManaForWeapon);
+            SpawningArrow = null; 
+            EventSystem.DoAttack(PlayerOptions.ManaForBow);
         }
         ArrowTarget.SetActive(false);
     }

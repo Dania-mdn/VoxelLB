@@ -12,7 +12,7 @@ public class EnemySwordAtack : MonoBehaviour
     private RaycastHit hit;
     private void Update()
     {
-        if (Physics.Raycast(Ray1.position, Ray1.position - transform.position, out hit, 1.5f))
+        if (Physics.Raycast(Ray1.position, Ray1.position - transform.position, out hit, 2))
         {
             if (hit.transform.tag == "Player")
             {
