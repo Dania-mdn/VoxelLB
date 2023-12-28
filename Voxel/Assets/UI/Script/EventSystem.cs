@@ -5,6 +5,7 @@ public class EventSystem : MonoBehaviour
 {
     public static event Action<float> AttackHealth;
     public static event Action<float> Attack;
+    public static event Action<bool> Night;
     public static bool readySword = true;
     public static bool readyBow = true;
     public static bool readyHammer = true;
@@ -27,6 +28,10 @@ public class EventSystem : MonoBehaviour
     public static void DoEmptiMana()
     {
         EmptiMana?.Invoke();
+    }
+    public static void DoNight(bool isNight)
+    {
+        Night?.Invoke(isNight);
     }
     public static void SetReadySword(bool ReadyAction)
     {

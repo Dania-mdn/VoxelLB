@@ -8,10 +8,17 @@ public class Hummer : MonoBehaviour
 
     public WeaponHendler weaponHendler;
     public bool isBAAAM = false;
+    public ParticleSystem particleSystem1;
+    public ParticleSystem particleSystem2;
+    public ParticleSystem particleSystem3;
 
     private void OnCollisionEnter(Collision collision)
     {
         if(!isBAAAM) return;
+
+        particleSystem1.Play();
+        particleSystem2.Play();
+        particleSystem3.Play();
 
         Rigidbody body = collision.transform.GetComponent<Rigidbody>();
 

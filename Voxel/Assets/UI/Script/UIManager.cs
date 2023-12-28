@@ -39,9 +39,11 @@ public class UIManager : MonoBehaviour
         //Cursor.visible = false;
 
         SliderMana.maxValue = PlayerOptions.MaxMana;
+        SliderMana.value = PlayerOptions.MaxMana;
         Mana = PlayerOptions.MaxMana;
 
         SliderHealth.maxValue = PlayerOptions.MaxHealth;
+        SliderHealth.value = PlayerOptions.MaxHealth;
         Health = PlayerOptions.MaxHealth;
     }
     private void SetMana(float DeltaMana)
