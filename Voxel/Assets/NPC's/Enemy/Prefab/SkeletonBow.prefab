@@ -1248,7 +1248,6 @@ GameObject:
   - component: {fileID: 4488446528608826558}
   - component: {fileID: 4488446528608826556}
   - component: {fileID: 4488446528608826557}
-  - component: {fileID: 4488446528608826554}
   m_Layer: 0
   m_Name: SkeletonBow
   m_TagString: Untagged
@@ -1327,33 +1326,13 @@ MonoBehaviour:
   crippleMoveSpeed: 2
   RotationSmoothTime: 0
   Firerate: 1.5
-  Head: {fileID: 0}
+  Head: {fileID: 4488446528168554535}
   Body: {fileID: 2432852050694117029}
   LegL: {fileID: 4488446528774554351}
   LegR: {fileID: 4488446528170113527}
   isStop: 0
   coldawn: 1
   Damage: 1
---- !u!114 &4488446528608826554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4488446528608826544}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8eec4f109d43b4fb49b606ff45a2de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Head: {fileID: 4488446528872012331}
-  enemiOptions: {fileID: 4488446528608826557}
-  _rotationVelocity: 0.7
-  Ray:
-  - {fileID: 1548205082145827663}
-  - {fileID: 144376262161609625}
-  - {fileID: 5851975651118293687}
-  - {fileID: 7391413546969375246}
 --- !u!1 &4488446528774554350
 GameObject:
   m_ObjectHideFlags: 0
