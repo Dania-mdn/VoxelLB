@@ -45,6 +45,11 @@ public class UIManager : MonoBehaviour
         SliderHealth.maxValue = PlayerOptions.MaxHealth;
         SliderHealth.value = PlayerOptions.MaxHealth;
         Health = PlayerOptions.MaxHealth;
+
+        EventSystem.SetReadySword(true);
+        EventSystem.SetReadyBow(true);
+        EventSystem.SetReadyHammer(true);
+        EventSystem.SetReadyTeleport(true);
     }
     private void SetMana(float DeltaMana)
     {
