@@ -20,7 +20,7 @@ public class EnemyOptiuns : MonoBehaviour
     private EnemiMuwment EnemiMuwment;
     private Transform[] child;
 
-    public bool isBowEnewmy;
+    public bool isAxeEnewmy;
     public float jumpHeight;
     public float MoveSpeed;
     public float healthyMoveSpeed;
@@ -36,6 +36,7 @@ public class EnemyOptiuns : MonoBehaviour
     public Transform LegR;
 
     public bool isStop;
+    public bool isTaran = false;
 
     public float coldawn = 1;
     public float Damage = 1;
@@ -53,6 +54,7 @@ public class EnemyOptiuns : MonoBehaviour
         animatorBody.Rebind();
         animatorLeg.Rebind();
 
+        Debug.Log(0);
         if (cripl(Body) || cripl(Head))
         {
             Deat();

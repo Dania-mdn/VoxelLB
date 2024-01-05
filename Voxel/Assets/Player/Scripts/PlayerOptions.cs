@@ -85,7 +85,6 @@ public class PlayerOptions : MonoBehaviour
     {
         if (UIManager.SliderHealth.value < Damage)
         {
-
             Rigidbody[] childRigidbodies = transform.GetComponentsInChildren<Rigidbody>();
 
             foreach (Rigidbody rb in childRigidbodies)

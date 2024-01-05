@@ -33,23 +33,15 @@ public class Hummer : MonoBehaviour
         else
         {
 
+            collision.collider.gameObject.transform.parent = null;
+            if (collision.collider.gameObject.transform.GetComponent<Rigidbody>() != null)
+                collision.collider.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
+            else
+                collision.collider.gameObject.AddComponent<Rigidbody>();
+
             if (collision.collider.gameObject.layer == 3)
             {
-                collision.collider.gameObject.transform.parent = null;
-                if (collision.collider.gameObject.transform.GetComponent<Rigidbody>() != null)
-                    collision.collider.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-                else
-                    collision.collider.gameObject.AddComponent<Rigidbody>();
                 weaponHendler.SetArmored();
-                return;
-            }
-            else
-            {
-                collision.collider.gameObject.transform.parent = null;
-                if (collision.collider.gameObject.transform.GetComponent<Rigidbody>() != null)
-                    collision.collider.gameObject.transform.GetComponent<Rigidbody>().isKinematic = false;
-                else
-                    collision.collider.gameObject.AddComponent<Rigidbody>();
             }
 
             EnemyOptiuns.TakeHit();

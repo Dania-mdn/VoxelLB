@@ -13,7 +13,6 @@ public class EnemySword : MonoBehaviour
     public EnemyOptiuns enemyOptiuns;
     public EnemyCut enemyCut;
 
-    private float time; 
     public bool cuttime = false;
 
     private void OnCollisionEnter(Collision collision)

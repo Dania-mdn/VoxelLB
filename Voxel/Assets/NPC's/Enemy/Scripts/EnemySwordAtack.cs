@@ -12,7 +12,7 @@ public class EnemySwordAtack : MonoBehaviour
     private RaycastHit hit;
     private void Update()
     {
-        if (Physics.Raycast(Ray1.position, Ray1.position - transform.position, out hit, 2))
+        if (Physics.Raycast(Ray1.position, Ray1.forward, out hit, 2))
         {
             if (hit.transform.tag == "Player")
             {
@@ -49,7 +49,7 @@ public class EnemySwordAtack : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawRay(Ray1.transform.position, Ray1.position - transform.position * 1);
+        Gizmos.DrawRay(Ray1.transform.position, Ray1.forward * 2);
         Gizmos.DrawRay(Ray2.transform.position, Ray2.forward * 1);
     }
 }

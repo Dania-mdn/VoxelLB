@@ -8,9 +8,7 @@ public class EnemiMuwment : MonoBehaviour
     private float _targetRotation = 0.0f;
     public GameObject Head;
     private float distance;
-    private float distanceValue;
-    private float distanceSwordValue = 1.4f;
-    private float distanceBowValue = 14;
+    private float distanceValue = 1.4f;
 
     private CharacterController controller;
     public EnemyOptiuns enemiOptions;
@@ -18,7 +16,6 @@ public class EnemiMuwment : MonoBehaviour
 
     private float gravity = -9.81f;
     Vector3 velocity;
-
 
     public Transform[] Ray;
     private RaycastHit hit;
@@ -48,10 +45,10 @@ public class EnemiMuwment : MonoBehaviour
         if(enemiOptions.Target != null)
             distance = Vector3.Distance(transform.position, enemiOptions.Target.position);
 
-        if (enemiOptions.isBowEnewmy && enemiOptions.Target == enemiOptions.Player)
-            distanceValue = distanceBowValue;
-        else 
-            distanceValue = distanceSwordValue;
+        /*if (enemiOptions.isAxeEnewmy && enemiOptions.Target == enemiOptions.Player && distance < 3)
+            enemiOptions.MoveSpeed = 6;
+        else*/
+
 
         if (distance < distanceValue)
         {
@@ -169,6 +166,8 @@ public class EnemiMuwment : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         enemiOptions.Angle = Vector3.Angle(transform.forward, inputDirection);
+
+        if (enemiOptions.isTaran == true) return;
 
         if (enemiOptions.Angle < 70 && enemiOptions.Target == enemiOptions.Player)
             Head.transform.LookAt(enemiOptions.Player);
